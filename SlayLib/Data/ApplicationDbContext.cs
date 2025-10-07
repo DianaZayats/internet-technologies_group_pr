@@ -10,7 +10,5 @@ namespace SlayLib.Data
             : base(options)
         {
         }
-
-      
     }
 }
