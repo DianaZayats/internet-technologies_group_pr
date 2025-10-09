@@ -2,10 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,40 +19,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-<<<<<<< Updated upstream
-using SlayLib.Models; 
-using SlayLib.Data;  
-=======
->>>>>>> Stashed changes
+using SlayLib.Models;
 
 namespace WebAppCore.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-<<<<<<< Updated upstream
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IUserStore<ApplicationUser> _userStore;
-        private readonly IUserEmailStore<ApplicationUser> _emailStore;
-=======
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
->>>>>>> Stashed changes
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-<<<<<<< Updated upstream
-            UserManager<ApplicationUser> userManager,
-            IUserStore<ApplicationUser> userStore,
-            SignInManager<ApplicationUser> signInManager,
-=======
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
->>>>>>> Stashed changes
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -66,25 +46,6 @@ namespace WebAppCore.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-
-<<<<<<< Updated upstream
-        [BindProperty]
-        public InputModel Input { get; set; }
-
-        public string ReturnUrl { get; set; }
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [Display(Name = "First Name")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [Display(Name = "Last Name")]
-            public string LastName { get; set; }
-
-=======
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -114,42 +75,34 @@ namespace WebAppCore.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
->>>>>>> Stashed changes
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-<<<<<<< Updated upstream
-=======
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
->>>>>>> Stashed changes
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-<<<<<<< Updated upstream
-=======
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
->>>>>>> Stashed changes
+
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -164,13 +117,7 @@ namespace WebAppCore.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-<<<<<<< Updated upstream
-           
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
 
-=======
->>>>>>> Stashed changes
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -207,25 +154,7 @@ namespace WebAppCore.Areas.Identity.Pages.Account
                 }
             }
 
-<<<<<<< Updated upstream
-            return Page();
-        }
 
-        private ApplicationUser CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<ApplicationUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not abstract and has a parameterless constructor.");
-            }
-        }
-
-        private IUserEmailStore<ApplicationUser> GetEmailStore()
-=======
             // If we got this far, something failed, redisplay form
             return Page();
         }
@@ -245,17 +174,15 @@ namespace WebAppCore.Areas.Identity.Pages.Account
         }
 
         private IUserEmailStore<IdentityUser> GetEmailStore()
->>>>>>> Stashed changes
+
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-<<<<<<< Updated upstream
-            return (IUserEmailStore<ApplicationUser>)_userStore;
-=======
+
             return (IUserEmailStore<IdentityUser>)_userStore;
->>>>>>> Stashed changes
+
         }
     }
 }
