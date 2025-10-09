@@ -1,8 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using SlayLib.Models
+@model IEnumerable<ApplicationUser>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>List of users</h1>
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>@user.FirstName</li>
+        <li>@user.LastName</li>
+        <li>@user.Email</li>
+    }
+</ul>
