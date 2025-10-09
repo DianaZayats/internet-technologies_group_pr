@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SlayLib.Data;
 using SlayLib.Interfaces;
+using SlayLib.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace SlayLib.Repositories
 {
-    public class BaseSqlServerRepository<TDbContext> : IRepository
+    public class BaseSqlServerRepository<TDbContext> : IMitRepository
         where TDbContext : DbContext
     {
-        protected readonly TDbContext Db;
+        protected TDbContext Db { get; set; }
 
         public BaseSqlServerRepository(TDbContext db)
         {
@@ -54,6 +56,11 @@ namespace SlayLib.Repositories
         public async Task<bool> ExistsAsync<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return await Db.Set<T>().AnyAsync(predicate);
+        }
+
+        public Task<ApplicationUser> GetUserByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }
