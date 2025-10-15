@@ -6,6 +6,7 @@
         public string? MyAppConnString { get; set; }          
         public string? DefaultConnection { get; set; }        
         public MapSettings? MapSettings { get; set; }        
-        public string? ApiKey { get; set; }                  
+        public string? ApiKey { get; set; }
+        public ProjectSettings? ProjectSettings { get; set; }
     }
 }
