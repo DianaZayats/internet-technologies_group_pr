@@ -1,0 +1,11 @@
+
+  {
+    "ApplicationName": "WebAppCore (Shared)",
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information"
+      }
+    }
+  }
+
+
