@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Mit.Models.Configurations
+@inject MitConfiguration Cfg
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,6 +36,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -39,9 +45,40 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - WebAppCore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            @functions {
+                string Mask(string? s)
+                {
+                    if (string.IsNullOrEmpty(s)) return "";
+                    var head = s.Length <= 6 ? s : s.Substring(0, 6);
+                    return head + new string('*', Math.Max(0, s.Length - head.Length));
+                }
+            }
+
+            <span>@(Cfg.ApplicationName ?? "WebAppCore")</span>
+
+            @if (Cfg.MapSettings?.DefaultLocation is not null)
+            {
+                <span> · @($"{Cfg.MapSettings.DefaultLocation.Latitude:0.####}, {Cfg.MapSettings.DefaultLocation.Longitude:0.####}")</span>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Cfg.ProjectSettings?.Theme))
+            {
+                <span> · Theme: @Cfg.ProjectSettings.Theme</span>
+            }
+            @if (Cfg.ProjectSettings?.ShowDebugInfo == true)
+            {
+                <span> · Debug: on</span>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Cfg.ApiKey))
+            {
+                <span> · ApiKey: @Mask(Cfg.ApiKey)</span>
+            }
+
+            <span> · &copy; 2025 — <a class="text-reset" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></span>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
