@@ -73,7 +73,22 @@ builder.Services.AddRateLimiter(options =>
     options.OnRejected = async (context, cancellationToken) =>
     {
         context.HttpContext.Response.StatusCode = 429;
-        await context.HttpContext.Response.WriteAsync("Too Many Requests", cancellationToken);
+        context.HttpContext.Response.ContentType = "text/html; charset=utf-8";
+
+        var executor = context.HttpContext.RequestServices.GetRequiredService<Microsoft.AspNetCore.Mvc.Infrastructure.IActionResultExecutor<Microsoft.AspNetCore.Mvc.ViewResult>>();
+        var viewResult = new Microsoft.AspNetCore.Mvc.ViewResult
+        {
+            ViewName = "/Views/Shared/TooManyRequests.cshtml"
+        };
+
+        await executor.ExecuteAsync(
+            new Microsoft.AspNetCore.Mvc.ActionContext(
+                context.HttpContext,
+                context.HttpContext.GetRouteData() ?? new Microsoft.AspNetCore.Routing.RouteData(),
+                new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()
+            ),
+            viewResult
+        );
     };
 });
 
