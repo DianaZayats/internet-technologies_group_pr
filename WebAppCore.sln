@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppCore", "WebAppCore.csproj", "{004F2374-F461-41AD-951B-D15D58B66BD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppCore", "WebAppCore\WebAppCore.csproj", "{004F2374-F461-41AD-951B-D15D58B66BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlayLib", "..\SlayLib\SlayLib.csproj", "{34EC2FF4-5AEE-44B8-82BA-B6155FC6E0F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlayLib", "SlayLib\SlayLib.csproj", "{34EC2FF4-5AEE-44B8-82BA-B6155FC6E0F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
