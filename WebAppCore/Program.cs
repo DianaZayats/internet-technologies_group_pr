@@ -18,12 +18,23 @@ if (builder.Environment.IsDevelopment())
     builder.Configuration.AddUserSecrets<Program>();
 }
 
+bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
 var mitConfig = builder.Configuration.Get<MitConfiguration>();
+
+if (mitConfig == null)
+    throw new InvalidOperationException("MitConfiguration is not set in configuration.");
+
 builder.Services.AddSingleton(mitConfig);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+{
+    connectionString = builder.Configuration.GetConnectionString("LinuxDockerConnection");
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
