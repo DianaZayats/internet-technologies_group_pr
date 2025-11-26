@@ -86,6 +86,10 @@ namespace WebAppCore.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+
+                    await _userManager.AddClaimAsync(user,
+                        new System.Security.Claims.Claim("IsVerifiedClient", "true"));
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }

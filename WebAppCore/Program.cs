@@ -8,6 +8,8 @@ using Microsoft.Extensions.Options;
 using Mit.Models.Configurations;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,7 +51,29 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddControllersWithViews();
+// Configure application cookie (login path, etc.)
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
+
+// Authorization policies
+builder.Services.AddAuthorization(options =>
+{
+    // Policy for users that have IsVerifiedClient claim
+    options.AddPolicy("VerifiedClientOnly", policy =>
+        policy.RequireClaim("IsVerifiedClient", "true"));
+});
+
+// MVC controllers: by default require authenticated user
+builder.Services.AddControllersWithViews(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
 builder.Services.AddRazorPages();
 
 builder.Services.AddRateLimiter(options =>
