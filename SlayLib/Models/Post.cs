@@ -21,6 +21,9 @@ namespace SlayLib.Models
         /// </summary>
         [Required]
         public string AuthorId { get; set; } = string.Empty;
+        public ApplicationUser? Author { get; set; }
+
+        public List<Comment>? Comments { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
