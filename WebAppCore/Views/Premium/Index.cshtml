@@ -1,24 +1,24 @@
 @{
-    ViewData["Title"] = "Premium сторінка";
+    ViewData["Title"] = Localizer["Title"];
 }
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 <h1>@ViewData["Title"]</h1>
 
 <div class="alert alert-success">
-    <h2>Ласкаво просимо на Premium сторінку!</h2>
-    <p>Ця сторінка доступна тільки користувачам з мінімум 100 робочими годинами.</p>
+    <h2>@Localizer["Welcome"]</h2>
+    <p>@Localizer["Available"]</p>
     @if (ViewData["WorkingHours"] != null)
     {
-        <p><strong>Ваші робочі години:</strong> @ViewData["WorkingHours"]</p>
+        <p><strong>@Localizer["YourHours"]</strong> @ViewData["WorkingHours"]</p>
     }
 </div>
 
 <div class="card">
     <div class="card-body">
-        <h3 class="card-title">Premium контент</h3>
+        <h3 class="card-title">@Localizer["ContentTitle"]</h3>
         <p class="card-text">
-            Це ексклюзивний контент для Premium користувачів. 
-            Ви маєте доступ до цієї сторінки завдяки вашій високій кількості робочих годин.
+            @Localizer["Content"]
         </p>
     </div>
 </div>
