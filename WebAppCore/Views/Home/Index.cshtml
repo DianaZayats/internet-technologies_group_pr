@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Localizer["Title"];
 }
 @using SlayLib.Models
 @model IEnumerable<ApplicationUser>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
-<h1>List of users</h1>
+<h1>@Localizer["PageName"]</h1>
 <ul>
     @foreach (var user in Model)
     {

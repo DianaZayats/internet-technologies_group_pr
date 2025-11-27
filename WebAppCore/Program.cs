@@ -145,10 +145,31 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 
+builder.Services.AddLocalization(options =>
+{
+    options.ResourcesPath = "Resources"; 
+});
+
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
+
+var supportedCultures = new[] { "en-US", "uk-UA", "cs-CZ" };
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.SetDefaultCulture("en-US")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+});
+builder.Services.AddControllersWithViews()
+.AddViewLocalization()
+.AddDataAnnotationsLocalization();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseRequestLocalization();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
