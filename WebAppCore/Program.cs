@@ -62,6 +62,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Реєстрація обробників авторизації
 builder.Services.AddScoped<IAuthorizationHandler, IsResourceOwnerHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, MinimumWorkingHoursHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, ForumAccessHandler>();
 
 // Authorization policies
 builder.Services.AddAuthorization(options =>
@@ -77,6 +78,9 @@ builder.Services.AddAuthorization(options =>
     // Політика для доступу до Premium сторінки: мінімум 100 робочих годин
     options.AddPolicy("CanAccessPremium", policy =>
         policy.Requirements.Add(new MinimumWorkingHoursRequirement(100)));
+
+    options.AddPolicy("ForumAccessPolicy", policy =>
+       policy.AddRequirements(new ForumAccessRequirement()));
 });
 
 // MVC controllers: by default require authenticated user

@@ -124,16 +124,20 @@ namespace WebAppCore.Controllers
         /// <summary>
         /// Відображає деталі поста
         /// </summary>
-        [AllowAnonymous]
+        [Authorize(Policy = "ForumAccessPolicy")]
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var post = _context.Posts
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.Author)
+                .FirstOrDefault(p => p.Id == id);
+
             if (post == null)
             {
                 return NotFound();
@@ -209,15 +213,33 @@ namespace WebAppCore.Controllers
         /// <summary>
         /// Відображає список всіх постів
         /// </summary>
-        [AllowAnonymous]
+        [Authorize(Policy = "ForumAccessPolicy")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Posts.ToListAsync());
+            return View(await _context.Posts.Include(p => p.Author).ToListAsync());
         }
 
         private async Task<bool> PostExistsAsync(int id)
         {
             return await _context.Posts.AnyAsync(e => e.Id == id);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddComment(int postId, string content)
+        {
+            var comment = new Comment
+            {
+                PostId = postId,
+                Content = content,
+                AuthorId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                CreatedAt = DateTime.Now
+            };
+
+            _context.Add(comment);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = postId });
         }
     }
 }
