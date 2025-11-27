@@ -11,6 +11,7 @@ using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Runtime.InteropServices;
+using WebAppCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,12 +59,24 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 });
 
+// Реєстрація обробників авторизації
+builder.Services.AddScoped<IAuthorizationHandler, IsResourceOwnerHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, MinimumWorkingHoursHandler>();
+
 // Authorization policies
 builder.Services.AddAuthorization(options =>
 {
     // Policy for users that have IsVerifiedClient claim
     options.AddPolicy("VerifiedClientOnly", policy =>
         policy.RequireClaim("IsVerifiedClient", "true"));
+
+    // Політика для редагування ресурсу: тільки власник може редагувати
+    options.AddPolicy("CanEditResource", policy =>
+        policy.Requirements.Add(new IsResourceOwnerRequirement()));
+
+    // Політика для доступу до Premium сторінки: мінімум 100 робочих годин
+    options.AddPolicy("CanAccessPremium", policy =>
+        policy.Requirements.Add(new MinimumWorkingHoursRequirement(100)));
 });
 
 // MVC controllers: by default require authenticated user

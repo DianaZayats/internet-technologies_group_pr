@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Тестування Claims";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-info">
+    <strong>Примітка:</strong> Ця сторінка призначена тільки для тестування. Після зміни claim потрібно вийти та увійти знову.
+</div>
+
+<h2>Поточні Claims користувача: @ViewBag.UserEmail</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Тип Claim</th>
+            <th>Значення</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Claims != null)
+        {
+            @foreach (var claim in ViewBag.Claims)
+            {
+                <tr>
+                    <td><strong>@claim.Type</strong></td>
+                    <td>@claim.Value</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">Немає claims</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<hr />
+
+<h3>Змінити WorkingHours Claim</h3>
+<p>Введіть нове значення для тестування доступу до Premium сторінки:</p>
+<ul>
+    <li><strong>≥ 100</strong> - має доступ до Premium</li>
+    <li><strong>&lt; 100</strong> - немає доступу до Premium (403)</li>
+</ul>
+
+<form asp-action="UpdateWorkingHours" method="post" class="mt-3">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label for="hours" class="form-label">Кількість робочих годин:</label>
+        <input type="number" id="hours" name="hours" class="form-control" value="50" min="0" required />
+        <small class="form-text text-muted">Введіть значення для тестування (наприклад, 50 для тестування відмови в доступі)</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Оновити WorkingHours</button>
+</form>
+
+<div class="alert alert-warning mt-3">
+    <strong>Важливо!</strong> Після зміни claim:
+    <ol>
+        <li>Виййдіть з системи</li>
+        <li>Увійдіть знову</li>
+        <li>Спробуйте відкрити <a href="/Premium">Premium сторінку</a></li>
+    </ol>
+</div>
+
+<div class="mt-3">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">На головну</a>
+    <a asp-controller="Premium" asp-action="Index" class="btn btn-info">Спробувати Premium</a>
+</div>
+

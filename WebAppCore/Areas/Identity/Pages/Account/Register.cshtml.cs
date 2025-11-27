@@ -90,6 +90,11 @@ namespace WebAppCore.Areas.Identity.Pages.Account
                     await _userManager.AddClaimAsync(user,
                         new System.Security.Claims.Claim("IsVerifiedClient", "true"));
 
+                    // Додаємо WorkingHours claim для доступу до Premium сторінки
+                    // Значення 150 дозволяє доступ (мінімум 100)
+                    await _userManager.AddClaimAsync(user,
+                        new System.Security.Claims.Claim("WorkingHours", "150"));
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }

@@ -37,7 +37,7 @@ public class HomeController : Controller
     }
 
 
-    [Authorize(Policy = "VerifiedClientOnly")]
+    [AllowAnonymous]
     public IActionResult Archive()
     {
         return View();
