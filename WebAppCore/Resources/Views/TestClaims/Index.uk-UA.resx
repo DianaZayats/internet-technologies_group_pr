@@ -117,7 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="t" xml:space="preserve">
-    <value />
+  <data name="NoteDescription" xml:space="preserve">
+    <value>Ця сторінка призначена для тестування Claims. Після зміни Claim потрібно вийти та увійти знову.</value>
+  </data>
+  <data name=" PageTitle" xml:space="preserve">
+    <value>Тестування Claims</value>
+  </data>
+  <data name="ForumClaimsDescription" xml:space="preserve">
+    <value>Ці claim-и впливають на доступ до сторінки Форуму.</value>
+  </data>
+  <data name="AddIsMentorButton" xml:space="preserve">
+    <value>Додати IsMentor</value>
+  </data>
+  <data name="RemoveIsMentorButton" xml:space="preserve">
+    <value>Видалити HasForumAccess</value>
+  </data>
+  <data name="AddIsVerifiedUserButton" xml:space="preserve">
+    <value>Додати IsVerifiedUser</value>
+  </data>
+  <data name="RemoveIsVerifiedUserButton" xml:space="preserve">
+    <value>Видалити IsVerifiedUser</value>
+  </data>
+  <data name="AddHasForumAccessButton" xml:space="preserve">
+    <value>Додати HasForumAccess</value>
+  </data>
+  <data name="RemoveHasForumAccessButton" xml:space="preserve">
+    <value>Видалити HasForumAccess</value>
+  </data>
+  <data name="ToHomeButton" xml:space="preserve">
+    <value>На головну</value>
+  </data>
+  <data name="ToForumButton" xml:space="preserve">
+    <value>Перейти на Форум</value>
+  </data>
+  <data name="CurrentClaimsHeader" xml:space="preserve">
+    <value>Поточні Claims користувача:</value>
+  </data>
+  <data name="ClaimTypeHeader" xml:space="preserve">
+    <value>Тип Claim</value>
+  </data>
+  <data name="ClaimValueHeader" xml:space="preserve">
+    <value>Значення</value>
+  </data>
+  <data name="NoClaimsMessage" xml:space="preserve">
+    <value>Немає claims</value>
+  </data>
+  <data name="ChangeWorkingHoursHeader" xml:space="preserve">
+    <value>Змінити WorkingHours Claim</value>
+  </data>
+  <data name="HoursCountLabel" xml:space="preserve">
+    <value>Кількість годин</value>
+  </data>
+  <data name="UpdateWorkingHoursButton" xml:space="preserve">
+    <value>Оновити WorkingHours</value>
+  </data>
+  <data name="ManageForumClaimsHeader" xml:space="preserve">
+    <value>Керування Forum Claims</value>
+  </data>
+  <data name="WorkingHoursDescription" xml:space="preserve">
+    <value>Введіть нове значення для тестування Premium-доступу:</value>
+  </data>
+  <data name="NoteKey" xml:space="preserve">
+    <value>Примітка:</value>
   </data>
 </root>

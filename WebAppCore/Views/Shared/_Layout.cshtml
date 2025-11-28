@@ -1,5 +1,7 @@
 ﻿@using Mit.Models.Configurations
 @inject MitConfiguration Cfg
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     Layout = null;
 }
@@ -49,6 +51,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="TestClaims" asp-action="Index">Тест Claims</a>
                         </li>
+
+
+                      
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                               asp-controller="SelectLanguage"
+                               asp-action="Index"
+                               asp-route-returnUrl="@Context.Request.Path">
+                                @Localizer["lblLanguageSwitcher"]
+                            </a>
+                        </li>
+                       
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
