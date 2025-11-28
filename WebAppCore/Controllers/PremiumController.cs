@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using WebAppCore.ViewModels;
 
 namespace WebAppCore.Controllers
 {
@@ -19,8 +20,15 @@ namespace WebAppCore.Controllers
             var workingHoursClaim = User.FindFirst("WorkingHours");
             var workingHours = workingHoursClaim?.Value ?? "невідомо";
 
+            var metrics = new PremiumMetricsViewModel
+            {
+                NextReviewDate = DateTime.UtcNow.AddDays(14),
+                ProductivityScore = 87.45,
+                SubscriptionFee = 249.99m
+            };
+
             ViewData["WorkingHours"] = workingHours;
-            return View();
+            return View(metrics);
         }
     }
 }

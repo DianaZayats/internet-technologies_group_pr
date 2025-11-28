@@ -1,7 +1,11 @@
+@model WebAppCore.ViewModels.PremiumMetricsViewModel
+@using System.Globalization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
 @{
     ViewData["Title"] = Localizer["Title"];
+    var culture = CultureInfo.CurrentCulture;
 }
-@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 <h1>@ViewData["Title"]</h1>
 
@@ -12,6 +16,33 @@
     {
         <p><strong>@Localizer["YourHours"]</strong> @ViewData["WorkingHours"]</p>
     }
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">@Localizer["MetricsNextReview"]</h5>
+                <p class="card-text">@Model.NextReviewDate.ToString("D", culture)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">@Localizer["MetricsProductivity"]</h5>
+                <p class="card-text">@Model.ProductivityScore.ToString("N2", culture)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">@Localizer["MetricsSubscription"]</h5>
+                <p class="card-text">@Model.SubscriptionFee.ToString("C", culture)</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="card">

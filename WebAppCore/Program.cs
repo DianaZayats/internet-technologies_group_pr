@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Runtime.InteropServices;
 using WebAppCore.Authorization;
+using Microsoft.AspNetCore.Localization;
+using WebAppCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -90,7 +93,9 @@ builder.Services.AddControllersWithViews(options =>
         .RequireAuthenticatedUser()
         .Build();
     options.Filters.Add(new AuthorizeFilter(policy));
-});
+})
+.AddViewLocalization()
+.AddDataAnnotationsLocalization();
 builder.Services.AddRazorPages();
 
 builder.Services.AddRateLimiter(options =>
@@ -147,28 +152,35 @@ builder.Services.AddRateLimiter(options =>
 
 builder.Services.AddLocalization(options =>
 {
-    options.ResourcesPath = "Resources"; 
+    options.ResourcesPath = "Resources";
 });
 
-builder.Services.AddControllersWithViews()
-    .AddViewLocalization()
-    .AddDataAnnotationsLocalization();
-
-var supportedCultures = new[] { "en-US", "uk-UA", "cs-CZ" };
+var supportedCultureNames = new[] { "en-US", "uk-UA", "cs-CZ" };
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    options.SetDefaultCulture("en-US")
-    .AddSupportedCultures(supportedCultures)
-    .AddSupportedUICultures(supportedCultures);
+    var cultureInfos = supportedCultureNames
+        .Select(name => new CultureInfo(name))
+        .ToList();
+
+    options.DefaultRequestCulture = new RequestCulture("en-US");
+    options.SupportedCultures = cultureInfos;
+    options.SupportedUICultures = cultureInfos;
+
+    options.RequestCultureProviders = new List<IRequestCultureProvider>
+    {
+        new QueryStringCultureProvider(supportedCultureNames),
+        new CookieRequestCultureProvider(),
+        new AcceptLanguageHeaderRequestCultureProvider()
+    };
 });
-builder.Services.AddControllersWithViews()
-.AddViewLocalization()
-.AddDataAnnotationsLocalization();
 
 var app = builder.Build();
 
-app.UseRequestLocalization();
+var localizationOptions = app.Services
+    .GetRequiredService<IOptions<RequestLocalizationOptions>>()
+    .Value;
+app.UseRequestLocalization(localizationOptions);
 
 if (app.Environment.IsDevelopment())
 {
@@ -196,3 +208,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+

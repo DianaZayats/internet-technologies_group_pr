@@ -127,6 +127,15 @@
   <data name="ContentTitle" xml:space="preserve">
     <value>Преміум контент</value>
   </data>
+  <data name="MetricsNextReview" xml:space="preserve">
+    <value>Наступне аналітичне оновлення</value>
+  </data>
+  <data name="MetricsProductivity" xml:space="preserve">
+    <value>Індекс продуктивності</value>
+  </data>
+  <data name="MetricsSubscription" xml:space="preserve">
+    <value>Щомісячна вартість підписки</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Преміум сторінка</value>
   </data>
