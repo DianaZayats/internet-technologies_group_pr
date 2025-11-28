@@ -16,6 +16,7 @@
             <form asp-action="SetLanguage" method="post"
                   asp-route-cultureName="@culture.Name"
                   asp-route-returnUrl="@ViewData["ReturnUrl"]">
+                @Html.AntiForgeryToken()
                 <button class="btn btn-link" type="submit">
                     @culture.DisplayName
                 </button>

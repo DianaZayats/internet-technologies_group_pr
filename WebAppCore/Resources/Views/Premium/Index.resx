@@ -127,6 +127,15 @@
   <data name="ContentTitle" xml:space="preserve">
     <value>Premium content</value>
   </data>
+  <data name="MetricsNextReview" xml:space="preserve">
+    <value>Next renewal checkpoint</value>
+  </data>
+  <data name="MetricsProductivity" xml:space="preserve">
+    <value>Productivity index</value>
+  </data>
+  <data name="MetricsSubscription" xml:space="preserve">
+    <value>Monthly subscription fee</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Premium page</value>
   </data>
