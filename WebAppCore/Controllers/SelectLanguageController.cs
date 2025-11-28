@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
-using System.Globalization; // Хоча не строго обов'язково для цього файлу, корисно для читабельності
+using System.Globalization; 
 using System.Linq;
 using System.Collections.Generic;
 
