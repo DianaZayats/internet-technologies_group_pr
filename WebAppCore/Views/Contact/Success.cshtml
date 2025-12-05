@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Успішно відправлено";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-success">
+    <h2>Дякуємо!</h2>
+    <p>Ваша форма зворотного зв'язку була успішно відправлена.</p>
+</div>
+
+<div class="mt-3">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Повернутися на головну</a>
+</div>
+
