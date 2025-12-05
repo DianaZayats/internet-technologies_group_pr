@@ -7,27 +7,35 @@
     ViewData["Title"] = Localizer["lblChangeLanguage"];
 }
 
-<h2>@ViewData["Title"]</h2>
+<div class="container py-4" style="max-width: 900px;">
+    <h2 class="fw-bold mb-4" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        🌍 @ViewData["Title"]
+    </h2>
 
-<div class="row">
-    @foreach (var culture in Model)
+    <div class="card-modern">
+        <div class="card-body p-4">
+            <div class="row g-3">
+                @foreach (var culture in Model)
+                {
+                    <div class="col-md-4">
+                        <form asp-action="SetLanguage" method="post"
+                              asp-route-cultureName="@culture.Name"
+                              asp-route-returnUrl="@ViewData["ReturnUrl"]">
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-gradient w-100 rounded-pill px-4 py-2" type="submit">
+                                @culture.DisplayName
+                            </button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (ViewData["ReturnUrl"] != null)
     {
-        <div class="col-md-3">
-            <form asp-action="SetLanguage" method="post"
-                  asp-route-cultureName="@culture.Name"
-                  asp-route-returnUrl="@ViewData["ReturnUrl"]">
-                @Html.AntiForgeryToken()
-                <button class="btn btn-link" type="submit">
-                    @culture.DisplayName
-                </button>
-            </form>
+        <div class="mt-3 text-center">
+            <a href="@ViewData["ReturnUrl"]" class="btn btn-outline-secondary rounded-pill px-4 py-2">@Localizer["lblGoBack"]</a>
         </div>
     }
 </div>
-
-@if (ViewData["ReturnUrl"] != null)
-{
-    <div class="mt-3">
-        <a href="@ViewData["ReturnUrl"]" class="btn btn-secondary">@Localizer["lblGoBack"]</a>
-    </div>
-}

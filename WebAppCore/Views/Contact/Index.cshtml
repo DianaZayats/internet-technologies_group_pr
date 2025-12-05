@@ -3,59 +3,67 @@
 }
 @model WebAppCore.ViewModels.ContactViewModel
 
-<h1>@ViewData["Title"]</h1>
+<div class="container py-4" style="max-width: 800px;">
+    <h1 class="fw-bold mb-4" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        📧 @ViewData["Title"]
+    </h1>
 
-<h4>Заповніть форму для зворотного зв'язку</h4>
-<hr />
+    <h4>Заповніть форму для зворотного зв'язку</h4>
+    <hr />
 
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Index" method="post">
-            @Html.AntiForgeryToken()
-            
-            <!-- Загальний summary помилок валідації -->
-            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-modern">
+                <div class="card-body p-4">
+                    <form asp-action="Index" method="post">
+                        @Html.AntiForgeryToken()
+                        
+                        <!-- Загальний summary помилок валідації -->
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-            <!-- Поле: Повне ім'я -->
-            <div class="mb-3">
-                <label asp-for="FullName" class="form-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
+                        <!-- Поле: Повне ім'я -->
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label fw-semibold"></label>
+                            <input asp-for="FullName" class="form-control rounded-pill" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <!-- Поле: Email -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-semibold"></label>
+                            <input asp-for="Email" class="form-control rounded-pill" type="email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Поле: Вік -->
+                        <div class="mb-3">
+                            <label asp-for="Age" class="form-label fw-semibold"></label>
+                            <input asp-for="Age" class="form-control rounded-pill" type="number" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+
+                        <!-- Поле: Пароль -->
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label fw-semibold"></label>
+                            <input asp-for="Password" class="form-control rounded-pill" type="password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <!-- Поле: Підтвердження пароля -->
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
+                            <input asp-for="ConfirmPassword" class="form-control rounded-pill" type="password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-gradient rounded-pill px-5 py-2">Відправити</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary rounded-pill px-5 py-2 ms-2">Скасувати</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <!-- Поле: Email -->
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" type="email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-
-            <!-- Поле: Вік -->
-            <div class="mb-3">
-                <label asp-for="Age" class="form-label"></label>
-                <input asp-for="Age" class="form-control" type="number" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-
-            <!-- Поле: Пароль -->
-            <div class="mb-3">
-                <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" class="form-control" type="password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <!-- Поле: Підтвердження пароля -->
-            <div class="mb-3">
-                <label asp-for="ConfirmPassword" class="form-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" type="password" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Відправити</button>
-                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Скасувати</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

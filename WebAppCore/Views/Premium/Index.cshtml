@@ -7,50 +7,58 @@
     var culture = CultureInfo.CurrentCulture;
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container py-4" style="max-width: 1200px;">
+    <h1 class="fw-bold mb-4" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        ⭐ @ViewData["Title"]
+    </h1>
 
-<div class="alert alert-success">
-    <h2>@Localizer["Welcome"]</h2>
-    <p>@Localizer["Available"]</p>
-    @if (ViewData["WorkingHours"] != null)
-    {
-        <p><strong>@Localizer["YourHours"]</strong> @ViewData["WorkingHours"]</p>
-    }
-</div>
+    <div class="card-modern mb-4">
+        <div class="card-header" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; border-radius: 20px 20px 0 0;">
+            <h2 class="mb-0">@Localizer["Welcome"]</h2>
+        </div>
+        <div class="card-body">
+            <p>@Localizer["Available"]</p>
+            @if (ViewData["WorkingHours"] != null)
+            {
+                <p><strong>@Localizer["YourHours"]</strong> @ViewData["WorkingHours"]</p>
+            }
+        </div>
+    </div>
 
-<div class="row g-4 mb-4">
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">@Localizer["MetricsNextReview"]</h5>
-                <p class="card-text">@Model.NextReviewDate.ToString("D", culture)</p>
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card-modern h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@Localizer["MetricsNextReview"]</h5>
+                    <p class="card-text fs-4">@Model.NextReviewDate.ToString("D", culture)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-modern h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@Localizer["MetricsProductivity"]</h5>
+                    <p class="card-text fs-4">@Model.ProductivityScore.ToString("N2", culture)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-modern h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@Localizer["MetricsSubscription"]</h5>
+                    <p class="card-text fs-4">@Model.SubscriptionFee.ToString("C", culture)</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">@Localizer["MetricsProductivity"]</h5>
-                <p class="card-text">@Model.ProductivityScore.ToString("N2", culture)</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">@Localizer["MetricsSubscription"]</h5>
-                <p class="card-text">@Model.SubscriptionFee.ToString("C", culture)</p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title">@Localizer["ContentTitle"]</h3>
-        <p class="card-text">
-            @Localizer["Content"]
-        </p>
+    <div class="card-modern">
+        <div class="card-body">
+            <h3 class="card-title fw-bold">@Localizer["ContentTitle"]</h3>
+            <p class="card-text">
+                @Localizer["Content"]
+            </p>
+        </div>
     </div>
 </div>
 

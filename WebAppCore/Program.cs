@@ -42,7 +42,7 @@ if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("WebAppCore")));
 
 builder.Services.AddScoped<IMitRepository, SlaySqlServerRepository>();
 
@@ -64,6 +64,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 // Реєстрація обробників авторизації
 builder.Services.AddScoped<IAuthorizationHandler, IsResourceOwnerHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, IsRecipeOwnerHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, MinimumWorkingHoursHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ForumAccessHandler>();
 
@@ -184,6 +185,14 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 var app = builder.Build();
+
+// Seed database with initial recipes
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    await SeedData.SeedRecipesAsync(context, userManager);
+}
 
 var localizationOptions = app.Services
     .GetRequiredService<IOptions<RequestLocalizationOptions>>()

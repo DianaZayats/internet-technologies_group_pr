@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="xml:space" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecipeIndex_Title" xml:space="preserve">
+    <value>Рецепти</value>
+  </data>
+  <data name="RecipeIndex_AddRecipe" xml:space="preserve">
+    <value>Додати рецепт</value>
+  </data>
+  <data name="RecipeIndex_Category" xml:space="preserve">
+    <value>Категорія</value>
+  </data>
+  <data name="RecipeIndex_AllCategories" xml:space="preserve">
+    <value>Всі категорії</value>
+  </data>
+  <data name="Category_Breakfast" xml:space="preserve">
+    <value>Сніданок</value>
+  </data>
+  <data name="Category_Lunch" xml:space="preserve">
+    <value>Обід</value>
+  </data>
+  <data name="Category_Dinner" xml:space="preserve">
+    <value>Вечеря</value>
+  </data>
+  <data name="Category_Dessert" xml:space="preserve">
+    <value>Десерт</value>
+  </data>
+  <data name="Category_Snack" xml:space="preserve">
+    <value>Закуска</value>
+  </data>
+  <data name="RecipeIndex_Difficulty" xml:space="preserve">
+    <value>Складність</value>
+  </data>
+  <data name="RecipeIndex_AllDifficulties" xml:space="preserve">
+    <value>Вся складність</value>
+  </data>
+  <data name="Difficulty_Easy" xml:space="preserve">
+    <value>Простий</value>
+  </data>
+  <data name="Difficulty_Medium" xml:space="preserve">
+    <value>Середній</value>
+  </data>
+  <data name="Difficulty_Hard" xml:space="preserve">
+    <value>Складний</value>
+  </data>
+  <data name="RecipeIndex_MinTime" xml:space="preserve">
+    <value>Мін. час (хв)</value>
+  </data>
+  <data name="RecipeIndex_MaxTime" xml:space="preserve">
+    <value>Макс. час (хв)</value>
+  </data>
+  <data name="RecipeIndex_Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="RecipeIndex_SearchPlaceholder" xml:space="preserve">
+    <value>Назва або опис...</value>
+  </data>
+  <data name="RecipeIndex_SearchButton" xml:space="preserve">
+    <value>Шукати</value>
+  </data>
+  <data name="RecipeIndex_Reset" xml:space="preserve">
+    <value>Скинути</value>
+  </data>
+  <data name="RecipeIndex_Minutes" xml:space="preserve">
+    <value>хв</value>
+  </data>
+  <data name="RecipeIndex_ViewDetails" xml:space="preserve">
+    <value>Деталі рецепту</value>
+  </data>
+  <data name="RecipeIndex_NoRecipes" xml:space="preserve">
+    <value>Рецептів не знайдено</value>
+  </data>
+  <data name="RecipeIndex_NoRecipesMessage" xml:space="preserve">
+    <value>Спробуйте змінити фільтри або створити новий рецепт.</value>
+  </data>
+  <data name="RecipeIndex_AddFavorite" xml:space="preserve">
+    <value>Додати до улюблених</value>
+  </data>
+  <data name="RecipeIndex_RemoveFavorite" xml:space="preserve">
+    <value>Видалити з улюблених</value>
+  </data>
+  <data name="RecipeCreate_Title" xml:space="preserve">
+    <value>Додати рецепт</value>
+  </data>
+  <data name="RecipeCreate_Subtitle" xml:space="preserve">
+    <value>Заповніть форму для додавання нового рецепту</value>
+  </data>
+  <data name="RecipeCreate_SelectCategory" xml:space="preserve">
+    <value>Оберіть категорію</value>
+  </data>
+  <data name="RecipeCreate_SelectDifficulty" xml:space="preserve">
+    <value>Оберіть складність</value>
+  </data>
+  <data name="RecipeCreate_SelectDiet" xml:space="preserve">
+    <value>Оберіть тип дієти</value>
+  </data>
+  <data name="RecipeCreate_SelectCuisine" xml:space="preserve">
+    <value>Оберіть кухню</value>
+  </data>
+  <data name="RecipeCreate_SelectBudget" xml:space="preserve">
+    <value>Оберіть бюджет</value>
+  </data>
+  <data name="RecipeCreate_IngredientsPlaceholder" xml:space="preserve">
+    <value>Введіть список інгредієнтів, розділених комами або новими рядками</value>
+  </data>
+  <data name="RecipeCreate_IngredientsHint" xml:space="preserve">
+    <value>Формат: кількість одиниця назва (наприклад: 2 стакани борошна)</value>
+  </data>
+  <data name="RecipeCreate_Submit" xml:space="preserve">
+    <value>Додати рецепт</value>
+  </data>
+  <data name="RecipeCreate_Cancel" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="RecipeIndex_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="RecipeIndex_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="RecipeIndex_BackToList" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
+  <data name="RecipeIndex_DeleteConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete this recipe?</value>
+  </data>
+  <data name="RecipeEdit_Title" xml:space="preserve">
+    <value>Edit Recipe</value>
+  </data>
+  <data name="RecipeEdit_Subtitle" xml:space="preserve">
+    <value>Edit recipe information</value>
+  </data>
+  <data name="RecipeEdit_Submit" xml:space="preserve">
+    <value>Update Recipe</value>
+  </data>
+  <data name="RecipeEdit_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+</root>
+
