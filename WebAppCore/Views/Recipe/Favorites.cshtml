@@ -80,11 +80,11 @@
     {
         return category switch
         {
-            "Breakfast" => "Сніданок",
-            "Lunch" => "Обід",
-            "Dinner" => "Вечеря",
-            "Dessert" => "Десерт",
-            "Snack" => "Закуска",
+            "Breakfast" => Localizer["Category_Breakfast"].Value,
+            "Lunch" => Localizer["Category_Lunch"].Value,
+            "Dinner" => Localizer["Category_Dinner"].Value,
+            "Dessert" => Localizer["Category_Dessert"].Value,
+            "Snack" => Localizer["Category_Snack"].Value,
             _ => category
         };
     }
@@ -93,9 +93,9 @@
     {
         return difficulty switch
         {
-            "Easy" => "Простий",
-            "Medium" => "Середній",
-            "Hard" => "Складний",
+            "Easy" => Localizer["Difficulty_Easy"].Value,
+            "Medium" => Localizer["Difficulty_Medium"].Value,
+            "Hard" => Localizer["Difficulty_Hard"].Value,
             _ => difficulty
         };
     }

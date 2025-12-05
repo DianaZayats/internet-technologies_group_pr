@@ -25,20 +25,20 @@
                     <label class="form-label fw-semibold">@Localizer["RecipeIndex_Category"]</label>
                     <select name="category" class="form-select rounded-pill">
                         <option value="">@Localizer["RecipeIndex_AllCategories"]</option>
-                        <option value="Breakfast" selected="@(ViewBag.Category == "Breakfast")">@Localizer["Category_Breakfast"]</option>
-                        <option value="Lunch" selected="@(ViewBag.Category == "Lunch")">@Localizer["Category_Lunch"]</option>
-                        <option value="Dinner" selected="@(ViewBag.Category == "Dinner")">@Localizer["Category_Dinner"]</option>
-                        <option value="Dessert" selected="@(ViewBag.Category == "Dessert")">@Localizer["Category_Dessert"]</option>
-                        <option value="Snack" selected="@(ViewBag.Category == "Snack")">@Localizer["Category_Snack"]</option>
+                        @if (ViewBag.Category == "Breakfast") { <option value="Breakfast" selected>@Localizer["Category_Breakfast"]</option> } else { <option value="Breakfast">@Localizer["Category_Breakfast"]</option> }
+                        @if (ViewBag.Category == "Lunch") { <option value="Lunch" selected>@Localizer["Category_Lunch"]</option> } else { <option value="Lunch">@Localizer["Category_Lunch"]</option> }
+                        @if (ViewBag.Category == "Dinner") { <option value="Dinner" selected>@Localizer["Category_Dinner"]</option> } else { <option value="Dinner">@Localizer["Category_Dinner"]</option> }
+                        @if (ViewBag.Category == "Dessert") { <option value="Dessert" selected>@Localizer["Category_Dessert"]</option> } else { <option value="Dessert">@Localizer["Category_Dessert"]</option> }
+                        @if (ViewBag.Category == "Snack") { <option value="Snack" selected>@Localizer["Category_Snack"]</option> } else { <option value="Snack">@Localizer["Category_Snack"]</option> }
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">@Localizer["RecipeIndex_Difficulty"]</label>
                     <select name="difficulty" class="form-select rounded-pill">
                         <option value="">@Localizer["RecipeIndex_AllDifficulties"]</option>
-                        <option value="Easy" selected="@(ViewBag.Difficulty == "Easy")">@Localizer["Difficulty_Easy"]</option>
-                        <option value="Medium" selected="@(ViewBag.Difficulty == "Medium")">@Localizer["Difficulty_Medium"]</option>
-                        <option value="Hard" selected="@(ViewBag.Difficulty == "Hard")">@Localizer["Difficulty_Hard"]</option>
+                        @if (ViewBag.Difficulty == "Easy") { <option value="Easy" selected>@Localizer["Difficulty_Easy"]</option> } else { <option value="Easy">@Localizer["Difficulty_Easy"]</option> }
+                        @if (ViewBag.Difficulty == "Medium") { <option value="Medium" selected>@Localizer["Difficulty_Medium"]</option> } else { <option value="Medium">@Localizer["Difficulty_Medium"]</option> }
+                        @if (ViewBag.Difficulty == "Hard") { <option value="Hard" selected>@Localizer["Difficulty_Hard"]</option> } else { <option value="Hard">@Localizer["Difficulty_Hard"]</option> }
                     </select>
                 </div>
                 <div class="col-md-2">
@@ -54,40 +54,40 @@
                     <input type="text" name="search" class="form-control rounded-pill" value="@ViewBag.Search" placeholder="@Localizer["RecipeIndex_SearchPlaceholder"]" />
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label fw-semibold">Тип дієти</label>
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_DietType"]</label>
                     <select name="dietType" class="form-select rounded-pill">
-                        <option value="">Всі типи</option>
-                        <option value="vegan" selected="@(ViewBag.DietType == "vegan")">Vegan</option>
-                        <option value="keto" selected="@(ViewBag.DietType == "keto")">Keto</option>
-                        <option value="gluten-free" selected="@(ViewBag.DietType == "gluten-free")">Gluten-free</option>
-                        <option value="dairy-free" selected="@(ViewBag.DietType == "dairy-free")">Dairy-free</option>
+                        <option value="">@Localizer["RecipeIndex_AllDietTypes"]</option>
+                        @if (ViewBag.DietType == "vegan") { <option value="vegan" selected>@Localizer["DietType_Vegan"]</option> } else { <option value="vegan">@Localizer["DietType_Vegan"]</option> }
+                        @if (ViewBag.DietType == "keto") { <option value="keto" selected>@Localizer["DietType_Keto"]</option> } else { <option value="keto">@Localizer["DietType_Keto"]</option> }
+                        @if (ViewBag.DietType == "gluten-free") { <option value="gluten-free" selected>@Localizer["DietType_GlutenFree"]</option> } else { <option value="gluten-free">@Localizer["DietType_GlutenFree"]</option> }
+                        @if (ViewBag.DietType == "dairy-free") { <option value="dairy-free" selected>@Localizer["DietType_DairyFree"]</option> } else { <option value="dairy-free">@Localizer["DietType_DairyFree"]</option> }
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label fw-semibold">Кухня</label>
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Cuisine"]</label>
                     <select name="cuisine" class="form-select rounded-pill">
-                        <option value="">Всі кухні</option>
-                        <option value="Ukrainian" selected="@(ViewBag.Cuisine == "Ukrainian")">Українська</option>
-                        <option value="Italian" selected="@(ViewBag.Cuisine == "Italian")">Італійська</option>
-                        <option value="Asian" selected="@(ViewBag.Cuisine == "Asian")">Азійська</option>
-                        <option value="French" selected="@(ViewBag.Cuisine == "French")">Французька</option>
+                        <option value="">@Localizer["RecipeIndex_AllCuisines"]</option>
+                        @if (ViewBag.Cuisine == "Ukrainian") { <option value="Ukrainian" selected>@Localizer["Cuisine_Ukrainian"]</option> } else { <option value="Ukrainian">@Localizer["Cuisine_Ukrainian"]</option> }
+                        @if (ViewBag.Cuisine == "Italian") { <option value="Italian" selected>@Localizer["Cuisine_Italian"]</option> } else { <option value="Italian">@Localizer["Cuisine_Italian"]</option> }
+                        @if (ViewBag.Cuisine == "Asian") { <option value="Asian" selected>@Localizer["Cuisine_Asian"]</option> } else { <option value="Asian">@Localizer["Cuisine_Asian"]</option> }
+                        @if (ViewBag.Cuisine == "French") { <option value="French" selected>@Localizer["Cuisine_French"]</option> } else { <option value="French">@Localizer["Cuisine_French"]</option> }
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label fw-semibold">Бюджет</label>
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Budget"]</label>
                     <select name="budgetLevel" class="form-select rounded-pill">
-                        <option value="">Всі рівні</option>
-                        <option value="Cheap" selected="@(ViewBag.BudgetLevel == "Cheap")">Дешево</option>
-                        <option value="Medium" selected="@(ViewBag.BudgetLevel == "Medium")">Середньо</option>
-                        <option value="Expensive" selected="@(ViewBag.BudgetLevel == "Expensive")">Дорого</option>
+                        <option value="">@Localizer["RecipeIndex_AllBudgetLevels"]</option>
+                        @if (ViewBag.BudgetLevel == "Cheap") { <option value="Cheap" selected>@Localizer["Budget_Cheap"]</option> } else { <option value="Cheap">@Localizer["Budget_Cheap"]</option> }
+                        @if (ViewBag.BudgetLevel == "Medium") { <option value="Medium" selected>@Localizer["Budget_Medium"]</option> } else { <option value="Medium">@Localizer["Budget_Medium"]</option> }
+                        @if (ViewBag.BudgetLevel == "Expensive") { <option value="Expensive" selected>@Localizer["Budget_Expensive"]</option> } else { <option value="Expensive">@Localizer["Budget_Expensive"]</option> }
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label fw-semibold">Мін. калорії</label>
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_MinCalories"]</label>
                     <input type="number" name="minCalories" class="form-control rounded-pill" value="@ViewBag.MinCalories" placeholder="0" min="0" />
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label fw-semibold">Макс. калорії</label>
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_MaxCalories"]</label>
                     <input type="number" name="maxCalories" class="form-control rounded-pill" value="@ViewBag.MaxCalories" placeholder="5000" min="0" />
                 </div>
                 <div class="col-12">
@@ -124,7 +124,7 @@
                                 <button class="btn btn-sm position-absolute top-0 end-0 m-2 favorite-btn" 
                                         data-recipe-id="@recipe.Id" 
                                         style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 40px; height: 40px; border: none;"
-                                        title="@(isFavorite ? Localizer["RecipeIndex_RemoveFavorite"] : Localizer["RecipeIndex_AddFavorite"])">
+                                        title="@(isFavorite ? Localizer["RecipeIndex_RemoveFavorite"].Value : Localizer["RecipeIndex_AddFavorite"].Value)">
                                     @if (isFavorite)
                                     {
                                         <span style="color: #ff6b35;">❤️</span>
@@ -211,11 +211,11 @@
     {
         return category switch
         {
-            "Breakfast" => Localizer["Category_Breakfast"].ToString(),
-            "Lunch" => Localizer["Category_Lunch"].ToString(),
-            "Dinner" => Localizer["Category_Dinner"].ToString(),
-            "Dessert" => Localizer["Category_Dessert"].ToString(),
-            "Snack" => Localizer["Category_Snack"].ToString(),
+            "Breakfast" => Localizer["Category_Breakfast"].Value,
+            "Lunch" => Localizer["Category_Lunch"].Value,
+            "Dinner" => Localizer["Category_Dinner"].Value,
+            "Dessert" => Localizer["Category_Dessert"].Value,
+            "Snack" => Localizer["Category_Snack"].Value,
             _ => category
         };
     }
@@ -224,9 +224,9 @@
     {
         return difficulty switch
         {
-            "Easy" => Localizer["Difficulty_Easy"].ToString(),
-            "Medium" => Localizer["Difficulty_Medium"].ToString(),
-            "Hard" => Localizer["Difficulty_Hard"].ToString(),
+            "Easy" => Localizer["Difficulty_Easy"].Value,
+            "Medium" => Localizer["Difficulty_Medium"].Value,
+            "Hard" => Localizer["Difficulty_Hard"].Value,
             _ => difficulty
         };
     }
@@ -243,16 +243,22 @@
     }
 }
 
+@Html.AntiForgeryToken()
+
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.favorite-btn').forEach(btn => {
-                btn.addEventListener('click', async function() {
+                btn.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
                     const recipeId = this.dataset.recipeId;
                     const form = document.createElement('form');
                     form.method = 'POST';
                     form.action = '@Url.Action("ToggleFavorite", "Recipe")';
                     
+                    // Get anti-forgery token from the page
                     const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
                     if (token) {
                         const tokenInput = document.createElement('input');
@@ -269,24 +275,35 @@
                     form.appendChild(recipeIdInput);
                     
                     document.body.appendChild(form);
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form)
-                    });
                     
-                    if (response.ok) {
-                        const data = await response.json();
-                        const icon = this.querySelector('span');
-                        if (data.isFavorite) {
-                            icon.textContent = '❤️';
-                            icon.style.color = '#ff6b35';
+                    try {
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form)
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            const icon = this.querySelector('span');
+                            const title = this.getAttribute('title');
+                            
+                            if (data.isFavorite) {
+                                icon.textContent = '❤️';
+                                icon.style.color = '#ff6b35';
+                                this.setAttribute('title', '@Localizer["RecipeIndex_RemoveFavorite"].Value');
+                            } else {
+                                icon.textContent = '🤍';
+                                icon.style.color = '';
+                                this.setAttribute('title', '@Localizer["RecipeIndex_AddFavorite"].Value');
+                            }
                         } else {
-                            icon.textContent = '🤍';
-                            icon.style.color = '';
+                            console.error('Failed to toggle favorite:', response.statusText);
                         }
+                    } catch (error) {
+                        console.error('Error toggling favorite:', error);
+                    } finally {
+                        document.body.removeChild(form);
                     }
-                    
-                    document.body.removeChild(form);
                 });
             });
         });

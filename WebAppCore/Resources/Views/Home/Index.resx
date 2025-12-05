@@ -123,4 +123,94 @@
   <data name="Title" xml:space="preserve">
     <value>Home page</value>
   </data>
+  <data name="WelcomeTitle" xml:space="preserve">
+    <value>Welcome to CozyKitchen</value>
+  </data>
+  <data name="WelcomeSubtitle" xml:space="preserve">
+    <value>Discover, share, and enjoy amazing recipes from our community</value>
+  </data>
+  <data name="BrowseRecipes" xml:space="preserve">
+    <value>Browse Recipes</value>
+  </data>
+  <data name="AddRecipe" xml:space="preserve">
+    <value>Add Recipe</value>
+  </data>
+  <data name="JoinUs" xml:space="preserve">
+    <value>Join Us</value>
+  </data>
+  <data name="FeaturedRecipes" xml:space="preserve">
+    <value>Featured Recipes</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>View All</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="BrowseByCategory" xml:space="preserve">
+    <value>Browse by Category</value>
+  </data>
+  <data name="RecipesCount" xml:space="preserve">
+    <value>Recipes</value>
+  </data>
+  <data name="ViewCategory" xml:space="preserve">
+    <value>View Category</value>
+  </data>
+  <data name="NoRecipesInCategory" xml:space="preserve">
+    <value>No recipes yet</value>
+  </data>
+  <data name="MyFavorites" xml:space="preserve">
+    <value>My Favorites</value>
+  </data>
+  <data name="FavoritesDescription" xml:space="preserve">
+    <value>Access your saved favorite recipes</value>
+  </data>
+  <data name="ViewFavorites" xml:space="preserve">
+    <value>View Favorites</value>
+  </data>
+  <data name="ShoppingList" xml:space="preserve">
+    <value>Shopping List</value>
+  </data>
+  <data name="ShoppingListDescription" xml:space="preserve">
+    <value>Manage your shopping list from recipes</value>
+  </data>
+  <data name="ViewShoppingList" xml:space="preserve">
+    <value>View Shopping List</value>
+  </data>
+  <data name="PremiumRecipes" xml:space="preserve">
+    <value>Premium Recipes</value>
+  </data>
+  <data name="PremiumDescription" xml:space="preserve">
+    <value>Exclusive premium recipes for members</value>
+  </data>
+  <data name="ViewPremium" xml:space="preserve">
+    <value>View Premium</value>
+  </data>
+  <data name="Category_Breakfast" xml:space="preserve">
+    <value>Breakfast</value>
+  </data>
+  <data name="Category_Lunch" xml:space="preserve">
+    <value>Lunch</value>
+  </data>
+  <data name="Category_Dinner" xml:space="preserve">
+    <value>Dinner</value>
+  </data>
+  <data name="Category_Dessert" xml:space="preserve">
+    <value>Dessert</value>
+  </data>
+  <data name="Category_Snack" xml:space="preserve">
+    <value>Snack</value>
+  </data>
+  <data name="Difficulty_Easy" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+  <data name="Difficulty_Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Difficulty_Hard" xml:space="preserve">
+    <value>Hard</value>
+  </data>
 </root>

@@ -191,5 +191,62 @@
   <data name="RecipeEdit_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="RecipeIndex_DietType" xml:space="preserve">
+    <value>Diet Type</value>
+  </data>
+  <data name="RecipeIndex_AllDietTypes" xml:space="preserve">
+    <value>All Diet Types</value>
+  </data>
+  <data name="DietType_Vegan" xml:space="preserve">
+    <value>Vegan</value>
+  </data>
+  <data name="DietType_Keto" xml:space="preserve">
+    <value>Keto</value>
+  </data>
+  <data name="DietType_GlutenFree" xml:space="preserve">
+    <value>Gluten-free</value>
+  </data>
+  <data name="DietType_DairyFree" xml:space="preserve">
+    <value>Dairy-free</value>
+  </data>
+  <data name="RecipeIndex_Cuisine" xml:space="preserve">
+    <value>Cuisine</value>
+  </data>
+  <data name="RecipeIndex_AllCuisines" xml:space="preserve">
+    <value>All Cuisines</value>
+  </data>
+  <data name="Cuisine_Ukrainian" xml:space="preserve">
+    <value>Ukrainian</value>
+  </data>
+  <data name="Cuisine_Italian" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="Cuisine_Asian" xml:space="preserve">
+    <value>Asian</value>
+  </data>
+  <data name="Cuisine_French" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="RecipeIndex_Budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="RecipeIndex_AllBudgetLevels" xml:space="preserve">
+    <value>All Budget Levels</value>
+  </data>
+  <data name="Budget_Cheap" xml:space="preserve">
+    <value>Cheap</value>
+  </data>
+  <data name="Budget_Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Budget_Expensive" xml:space="preserve">
+    <value>Expensive</value>
+  </data>
+  <data name="RecipeIndex_MinCalories" xml:space="preserve">
+    <value>Min Calories</value>
+  </data>
+  <data name="RecipeIndex_MaxCalories" xml:space="preserve">
+    <value>Max Calories</value>
+  </data>
 </root>
 

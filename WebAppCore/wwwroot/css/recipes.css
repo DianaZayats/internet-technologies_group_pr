@@ -133,15 +133,18 @@
     font-weight: 600;
 }
 
-/* Body layout for footer */
+/* Body layout */
+html {
+    height: 100%;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    margin-bottom: 0 !important;
 }
 
 main {
-    flex: 1;
+    padding-bottom: 2rem;
 }
 
 /* Navbar z-index fix */
@@ -151,12 +154,6 @@ main {
 
 .dropdown-menu {
     z-index: 1051;
-}
-
-/* Footer fix */
-.footer {
-    position: relative;
-    margin-top: auto;
 }
 
 /* Warm color overrides */

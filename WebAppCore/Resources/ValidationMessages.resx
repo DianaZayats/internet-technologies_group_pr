@@ -130,5 +130,41 @@
   <data name="Ingredients_StringLength" xml:space="preserve">
     <value>The 'Ingredients' field must contain between {2} and {1} characters</value>
   </data>
+  <data name="RecipeName" xml:space="preserve">
+    <value>Recipe Name</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="PreparationTime" xml:space="preserve">
+    <value>Preparation Time</value>
+  </data>
+  <data name="Servings" xml:space="preserve">
+    <value>Servings</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Image URL</value>
+  </data>
+  <data name="DietType" xml:space="preserve">
+    <value>Diet Type</value>
+  </data>
+  <data name="Cuisine" xml:space="preserve">
+    <value>Cuisine</value>
+  </data>
+  <data name="BudgetLevel" xml:space="preserve">
+    <value>Budget Level</value>
+  </data>
+  <data name="Calories" xml:space="preserve">
+    <value>Calories</value>
+  </data>
+  <data name="Ingredients" xml:space="preserve">
+    <value>Ingredients</value>
+  </data>
 </root>
 

@@ -130,5 +130,41 @@
   <data name="Ingredients_StringLength" xml:space="preserve">
     <value>Pole 'Ingredience' musí obsahovat mezi {2} a {1} znaky</value>
   </data>
+  <data name="RecipeName" xml:space="preserve">
+    <value>Název receptu</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>Obtížnost</value>
+  </data>
+  <data name="PreparationTime" xml:space="preserve">
+    <value>Doba přípravy</value>
+  </data>
+  <data name="Servings" xml:space="preserve">
+    <value>Počet porcí</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>URL obrázku</value>
+  </data>
+  <data name="DietType" xml:space="preserve">
+    <value>Typ diety</value>
+  </data>
+  <data name="Cuisine" xml:space="preserve">
+    <value>Kuchyně</value>
+  </data>
+  <data name="BudgetLevel" xml:space="preserve">
+    <value>Úroveň rozpočtu</value>
+  </data>
+  <data name="Calories" xml:space="preserve">
+    <value>Kalorie</value>
+  </data>
+  <data name="Ingredients" xml:space="preserve">
+    <value>Ingredience</value>
+  </data>
 </root>
 

@@ -1,0 +1,10 @@
+@model SlayLib.Models.RecipeComment
+
+<div class="border-bottom pb-3 mb-3">
+    <div class="d-flex justify-content-between">
+        <strong>@(Model.Author?.FirstName ?? "Невідомо") @(Model.Author?.LastName ?? "")</strong>
+        <small class="text-muted">@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+    </div>
+    <p class="mb-0 mt-2">@Model.Content</p>
+</div>
+

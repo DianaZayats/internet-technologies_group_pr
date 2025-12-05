@@ -130,5 +130,41 @@
   <data name="Ingredients_StringLength" xml:space="preserve">
     <value>Поле 'Інгредієнти' повинно містити від {2} до {1} символів</value>
   </data>
+  <data name="RecipeName" xml:space="preserve">
+    <value>Назва рецепту</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категорія</value>
+  </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>Складність</value>
+  </data>
+  <data name="PreparationTime" xml:space="preserve">
+    <value>Час приготування</value>
+  </data>
+  <data name="Servings" xml:space="preserve">
+    <value>Кількість порцій</value>
+  </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>URL зображення</value>
+  </data>
+  <data name="DietType" xml:space="preserve">
+    <value>Тип дієти</value>
+  </data>
+  <data name="Cuisine" xml:space="preserve">
+    <value>Кухня</value>
+  </data>
+  <data name="BudgetLevel" xml:space="preserve">
+    <value>Рівень бюджету</value>
+  </data>
+  <data name="Calories" xml:space="preserve">
+    <value>Калорії</value>
+  </data>
+  <data name="Ingredients" xml:space="preserve">
+    <value>Інгредієнти</value>
+  </data>
 </root>
 

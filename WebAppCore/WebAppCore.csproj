@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-WebAppCore-a6a67a36-9476-4f4c-b38e-ccbdf55308ee</UserSecretsId>
+    <HotReloadEnabled>true</HotReloadEnabled>
+    <HotReloadProfile>aspnetcore</HotReloadProfile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -28,8 +28,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="xml:space" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -56,84 +58,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RecipeIndex_Title" xml:space="preserve">
-    <value>Recepty</value>
-  </data>
-  <data name="RecipeIndex_AddRecipe" xml:space="preserve">
-    <value>Přidat recept</value>
-  </data>
-  <data name="RecipeIndex_Category" xml:space="preserve">
-    <value>Kategorie</value>
-  </data>
-  <data name="RecipeIndex_AllCategories" xml:space="preserve">
-    <value>Všechny kategorie</value>
-  </data>
-  <data name="Category_Breakfast" xml:space="preserve">
-    <value>Snídaně</value>
-  </data>
-  <data name="Category_Lunch" xml:space="preserve">
-    <value>Oběd</value>
-  </data>
-  <data name="Category_Dinner" xml:space="preserve">
-    <value>Večeře</value>
-  </data>
-  <data name="Category_Dessert" xml:space="preserve">
-    <value>Dezert</value>
-  </data>
-  <data name="Category_Snack" xml:space="preserve">
-    <value>Svačina</value>
-  </data>
-  <data name="RecipeIndex_Difficulty" xml:space="preserve">
-    <value>Obtížnost</value>
-  </data>
-  <data name="RecipeIndex_AllDifficulties" xml:space="preserve">
-    <value>Všechny obtížnosti</value>
-  </data>
-  <data name="Difficulty_Easy" xml:space="preserve">
-    <value>Snadné</value>
-  </data>
-  <data name="Difficulty_Medium" xml:space="preserve">
-    <value>Střední</value>
-  </data>
-  <data name="Difficulty_Hard" xml:space="preserve">
-    <value>Těžké</value>
-  </data>
-  <data name="RecipeIndex_MinTime" xml:space="preserve">
-    <value>Min. čas (min)</value>
-  </data>
-  <data name="RecipeIndex_MaxTime" xml:space="preserve">
-    <value>Max. čas (min)</value>
-  </data>
-  <data name="RecipeIndex_Search" xml:space="preserve">
-    <value>Vyhledávání</value>
-  </data>
-  <data name="RecipeIndex_SearchPlaceholder" xml:space="preserve">
-    <value>Název nebo popis...</value>
-  </data>
-  <data name="RecipeIndex_SearchButton" xml:space="preserve">
-    <value>Hledat</value>
-  </data>
-  <data name="RecipeIndex_Reset" xml:space="preserve">
-    <value>Resetovat</value>
-  </data>
-  <data name="RecipeIndex_Minutes" xml:space="preserve">
-    <value>min</value>
-  </data>
-  <data name="RecipeIndex_ViewDetails" xml:space="preserve">
-    <value>Detaily receptu</value>
-  </data>
-  <data name="RecipeIndex_NoRecipes" xml:space="preserve">
-    <value>Recepty nenalezeny</value>
-  </data>
-  <data name="RecipeIndex_NoRecipesMessage" xml:space="preserve">
-    <value>Zkuste změnit filtry nebo vytvořit nový recept.</value>
-  </data>
-  <data name="RecipeIndex_AddFavorite" xml:space="preserve">
-    <value>Přidat do oblíbených</value>
-  </data>
-  <data name="RecipeIndex_RemoveFavorite" xml:space="preserve">
-    <value>Odebrat z oblíbených</value>
-  </data>
   <data name="RecipeCreate_Title" xml:space="preserve">
     <value>Přidat recept</value>
   </data>
@@ -156,7 +80,7 @@
     <value>Vyberte rozpočet</value>
   </data>
   <data name="RecipeCreate_IngredientsPlaceholder" xml:space="preserve">
-    <value>Zadejte seznam ingrediencí oddělených čárkami nebo novými řádky</value>
+    <value>Zadejte seznam ingrediencí, oddělených čárkami nebo novými řádky</value>
   </data>
   <data name="RecipeCreate_IngredientsHint" xml:space="preserve">
     <value>Formát: množství jednotka název (např.: 2 šálky mouky)</value>
@@ -167,38 +91,32 @@
   <data name="RecipeCreate_Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
-  <data name="RecipeIndex_Edit" xml:space="preserve">
-    <value>Upravit</value>
+  <data name="Category_Breakfast" xml:space="preserve">
+    <value>Snídaně</value>
   </data>
-  <data name="RecipeIndex_Delete" xml:space="preserve">
-    <value>Smazat</value>
+  <data name="Category_Lunch" xml:space="preserve">
+    <value>Oběd</value>
   </data>
-  <data name="RecipeIndex_BackToList" xml:space="preserve">
-    <value>Zpět na seznam</value>
+  <data name="Category_Dinner" xml:space="preserve">
+    <value>Večeře</value>
   </data>
-  <data name="RecipeIndex_DeleteConfirm" xml:space="preserve">
-    <value>Opravdu chcete smazat tento recept?</value>
+  <data name="Category_Dessert" xml:space="preserve">
+    <value>Dezert</value>
   </data>
-  <data name="RecipeEdit_Title" xml:space="preserve">
-    <value>Upravit recept</value>
+  <data name="Category_Snack" xml:space="preserve">
+    <value>Svačina</value>
   </data>
-  <data name="RecipeEdit_Subtitle" xml:space="preserve">
-    <value>Upravit informace o receptu</value>
+  <data name="Difficulty_Easy" xml:space="preserve">
+    <value>Snadné</value>
   </data>
-  <data name="RecipeEdit_Submit" xml:space="preserve">
-    <value>Aktualizovat recept</value>
+  <data name="Difficulty_Medium" xml:space="preserve">
+    <value>Střední</value>
   </data>
-  <data name="RecipeEdit_Cancel" xml:space="preserve">
-    <value>Zrušit</value>
-  </data>
-  <data name="RecipeIndex_DietType" xml:space="preserve">
-    <value>Typ diety</value>
-  </data>
-  <data name="RecipeIndex_AllDietTypes" xml:space="preserve">
-    <value>Všechny typy diet</value>
+  <data name="Difficulty_Hard" xml:space="preserve">
+    <value>Těžké</value>
   </data>
   <data name="DietType_Vegan" xml:space="preserve">
-    <value>Vegan</value>
+    <value>Veganské</value>
   </data>
   <data name="DietType_Keto" xml:space="preserve">
     <value>Keto</value>
@@ -208,12 +126,6 @@
   </data>
   <data name="DietType_DairyFree" xml:space="preserve">
     <value>Bez mléčných výrobků</value>
-  </data>
-  <data name="RecipeIndex_Cuisine" xml:space="preserve">
-    <value>Kuchyně</value>
-  </data>
-  <data name="RecipeIndex_AllCuisines" xml:space="preserve">
-    <value>Všechny kuchyně</value>
   </data>
   <data name="Cuisine_Ukrainian" xml:space="preserve">
     <value>Ukrajinská</value>
@@ -227,12 +139,6 @@
   <data name="Cuisine_French" xml:space="preserve">
     <value>Francouzská</value>
   </data>
-  <data name="RecipeIndex_Budget" xml:space="preserve">
-    <value>Rozpočet</value>
-  </data>
-  <data name="RecipeIndex_AllBudgetLevels" xml:space="preserve">
-    <value>Všechny úrovně rozpočtu</value>
-  </data>
   <data name="Budget_Cheap" xml:space="preserve">
     <value>Levné</value>
   </data>
@@ -241,12 +147,6 @@
   </data>
   <data name="Budget_Expensive" xml:space="preserve">
     <value>Drahé</value>
-  </data>
-  <data name="RecipeIndex_MinCalories" xml:space="preserve">
-    <value>Min. kalorie</value>
-  </data>
-  <data name="RecipeIndex_MaxCalories" xml:space="preserve">
-    <value>Max. kalorie</value>
   </data>
 </root>
 

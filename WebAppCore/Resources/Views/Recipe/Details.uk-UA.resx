@@ -29,7 +29,9 @@
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
               <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="xml:space" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -56,71 +58,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Nav_Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="RecipeIndex_BackToList" xml:space="preserve">
+    <value>Назад до списку</value>
   </data>
-  <data name="Nav_HomePage" xml:space="preserve">
-    <value>Home page</value>
+  <data name="RecipeIndex_Edit" xml:space="preserve">
+    <value>Редагувати</value>
   </data>
-  <data name="Nav_Archive" xml:space="preserve">
-    <value>Archive</value>
+  <data name="RecipeIndex_Delete" xml:space="preserve">
+    <value>Видалити</value>
   </data>
-  <data name="Nav_Privacy" xml:space="preserve">
-    <value>Privacy</value>
-  </data>
-  <data name="Nav_Posts" xml:space="preserve">
-    <value>Posts</value>
-  </data>
-  <data name="Nav_PostList" xml:space="preserve">
-    <value>Post list</value>
-  </data>
-  <data name="Nav_CreatePost" xml:space="preserve">
-    <value>Create post</value>
-  </data>
-  <data name="Nav_Recipes" xml:space="preserve">
-    <value>Recipes</value>
-  </data>
-  <data name="Nav_AllRecipes" xml:space="preserve">
-    <value>All recipes</value>
-  </data>
-  <data name="Nav_AddRecipe" xml:space="preserve">
-    <value>Add recipe</value>
-  </data>
-  <data name="Nav_MyFavorites" xml:space="preserve">
-    <value>My favorites</value>
-  </data>
-  <data name="Nav_ShoppingList" xml:space="preserve">
-    <value>Shopping list</value>
-  </data>
-  <data name="Nav_Premium" xml:space="preserve">
-    <value>Premium</value>
-  </data>
-  <data name="Nav_TestClaims" xml:space="preserve">
-    <value>Test Claims</value>
-  </data>
-  <data name="Nav_Contact" xml:space="preserve">
-    <value>Contact</value>
-  </data>
-  <data name="lblLanguageSwitcher" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="Footer_Tagline" xml:space="preserve">
-    <value>Discover, share, and enjoy amazing recipes from our community</value>
-  </data>
-  <data name="Footer_Navigation" xml:space="preserve">
-    <value>Navigation</value>
-  </data>
-  <data name="Footer_QuickLinks" xml:space="preserve">
-    <value>Quick Links</value>
-  </data>
-  <data name="Footer_JoinUs" xml:space="preserve">
-    <value>Join Us</value>
-  </data>
-  <data name="Footer_Login" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="Footer_AllRightsReserved" xml:space="preserve">
-    <value>All rights reserved.</value>
+  <data name="RecipeIndex_DeleteConfirm" xml:space="preserve">
+    <value>Ви впевнені, що хочете видалити цей рецепт?</value>
   </data>
 </root>
 

@@ -145,4 +145,31 @@
   <data name="YourHours" xml:space="preserve">
     <value>Ваші робочі години: </value>
   </data>
+  <data name="PremiumAccess" xml:space="preserve">
+    <value>Преміум доступ</value>
+  </data>
+  <data name="PremiumDescription" xml:space="preserve">
+    <value>Ексклюзивні преміум рецепти доступні тільки для преміум членів</value>
+  </data>
+  <data name="NoPremiumRecipes" xml:space="preserve">
+    <value>Преміум рецепти недоступні</value>
+  </data>
+  <data name="NoPremiumRecipesMessage" xml:space="preserve">
+    <value>На даний момент немає доступних преміум рецептів. Перевірте пізніше!</value>
+  </data>
+  <data name="Metrics_WorkingHours" xml:space="preserve">
+    <value>Робочі години</value>
+  </data>
+  <data name="Metrics_Hours" xml:space="preserve">
+    <value>годин</value>
+  </data>
+  <data name="Metrics_Favorites" xml:space="preserve">
+    <value>Улюблені рецепти</value>
+  </data>
+  <data name="Metrics_Created" xml:space="preserve">
+    <value>Створені рецепти</value>
+  </data>
+  <data name="Metrics_Recipes" xml:space="preserve">
+    <value>рецептів</value>
+  </data>
 </root>

@@ -145,4 +145,31 @@
   <data name="YourHours" xml:space="preserve">
     <value>Vaše pracovní doba: </value>
   </data>
+  <data name="PremiumAccess" xml:space="preserve">
+    <value>Prémiový přístup</value>
+  </data>
+  <data name="PremiumDescription" xml:space="preserve">
+    <value>Exkluzivní prémiové recepty dostupné pouze pro prémiové členy</value>
+  </data>
+  <data name="NoPremiumRecipes" xml:space="preserve">
+    <value>Prémiové recepty nejsou k dispozici</value>
+  </data>
+  <data name="NoPremiumRecipesMessage" xml:space="preserve">
+    <value>V tuto chvíli nejsou k dispozici žádné prémiové recepty. Zkuste to později!</value>
+  </data>
+  <data name="Metrics_WorkingHours" xml:space="preserve">
+    <value>Pracovní hodiny</value>
+  </data>
+  <data name="Metrics_Hours" xml:space="preserve">
+    <value>hodin</value>
+  </data>
+  <data name="Metrics_Favorites" xml:space="preserve">
+    <value>Oblíbené recepty</value>
+  </data>
+  <data name="Metrics_Created" xml:space="preserve">
+    <value>Vytvořené recepty</value>
+  </data>
+  <data name="Metrics_Recipes" xml:space="preserve">
+    <value>receptů</value>
+  </data>
 </root>

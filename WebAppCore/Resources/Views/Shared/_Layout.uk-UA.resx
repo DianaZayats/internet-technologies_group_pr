@@ -104,5 +104,23 @@
   <data name="lblLanguageSwitcher" xml:space="preserve">
     <value>Мова</value>
   </data>
+  <data name="Footer_Tagline" xml:space="preserve">
+    <value>Відкривайте, діліться та насолоджуйтесь чудовими рецептами від нашої спільноти</value>
+  </data>
+  <data name="Footer_Navigation" xml:space="preserve">
+    <value>Навігація</value>
+  </data>
+  <data name="Footer_QuickLinks" xml:space="preserve">
+    <value>Швидкі посилання</value>
+  </data>
+  <data name="Footer_JoinUs" xml:space="preserve">
+    <value>Приєднатися</value>
+  </data>
+  <data name="Footer_Login" xml:space="preserve">
+    <value>Вхід</value>
+  </data>
+  <data name="Footer_AllRightsReserved" xml:space="preserve">
+    <value>Всі права захищені.</value>
+  </data>
 </root>
 

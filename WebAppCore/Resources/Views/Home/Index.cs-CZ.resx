@@ -123,4 +123,94 @@
   <data name="Title" xml:space="preserve">
     <value>Domovská stránka</value>
   </data>
+  <data name="WelcomeTitle" xml:space="preserve">
+    <value>Vítejte v CozyKitchen</value>
+  </data>
+  <data name="WelcomeSubtitle" xml:space="preserve">
+    <value>Objevujte, sdílejte a užívejte si skvělé recepty od naší komunity</value>
+  </data>
+  <data name="BrowseRecipes" xml:space="preserve">
+    <value>Procházet recepty</value>
+  </data>
+  <data name="AddRecipe" xml:space="preserve">
+    <value>Přidat recept</value>
+  </data>
+  <data name="JoinUs" xml:space="preserve">
+    <value>Připojit se</value>
+  </data>
+  <data name="FeaturedRecipes" xml:space="preserve">
+    <value>Doporučené recepty</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Zobrazit vše</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>Podrobnosti</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="BrowseByCategory" xml:space="preserve">
+    <value>Procházet podle kategorií</value>
+  </data>
+  <data name="RecipesCount" xml:space="preserve">
+    <value>Receptů</value>
+  </data>
+  <data name="ViewCategory" xml:space="preserve">
+    <value>Zobrazit kategorii</value>
+  </data>
+  <data name="NoRecipesInCategory" xml:space="preserve">
+    <value>Zatím žádné recepty</value>
+  </data>
+  <data name="MyFavorites" xml:space="preserve">
+    <value>Moje oblíbené</value>
+  </data>
+  <data name="FavoritesDescription" xml:space="preserve">
+    <value>Přístup k vašim uloženým oblíbeným receptům</value>
+  </data>
+  <data name="ViewFavorites" xml:space="preserve">
+    <value>Zobrazit oblíbené</value>
+  </data>
+  <data name="ShoppingList" xml:space="preserve">
+    <value>Nákupní seznam</value>
+  </data>
+  <data name="ShoppingListDescription" xml:space="preserve">
+    <value>Spravujte svůj nákupní seznam z receptů</value>
+  </data>
+  <data name="ViewShoppingList" xml:space="preserve">
+    <value>Zobrazit nákupní seznam</value>
+  </data>
+  <data name="PremiumRecipes" xml:space="preserve">
+    <value>Prémiové recepty</value>
+  </data>
+  <data name="PremiumDescription" xml:space="preserve">
+    <value>Exkluzivní prémiové recepty pro členy</value>
+  </data>
+  <data name="ViewPremium" xml:space="preserve">
+    <value>Zobrazit prémium</value>
+  </data>
+  <data name="Category_Breakfast" xml:space="preserve">
+    <value>Snídaně</value>
+  </data>
+  <data name="Category_Lunch" xml:space="preserve">
+    <value>Oběd</value>
+  </data>
+  <data name="Category_Dinner" xml:space="preserve">
+    <value>Večeře</value>
+  </data>
+  <data name="Category_Dessert" xml:space="preserve">
+    <value>Dezert</value>
+  </data>
+  <data name="Category_Snack" xml:space="preserve">
+    <value>Svačina</value>
+  </data>
+  <data name="Difficulty_Easy" xml:space="preserve">
+    <value>Snadné</value>
+  </data>
+  <data name="Difficulty_Medium" xml:space="preserve">
+    <value>Střední</value>
+  </data>
+  <data name="Difficulty_Hard" xml:space="preserve">
+    <value>Těžké</value>
+  </data>
 </root>
