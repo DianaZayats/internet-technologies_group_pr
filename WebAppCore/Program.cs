@@ -95,7 +95,15 @@ builder.Services.AddControllersWithViews(options =>
     options.Filters.Add(new AuthorizeFilter(policy));
 })
 .AddViewLocalization()
-.AddDataAnnotationsLocalization();
+.AddDataAnnotationsLocalization(options =>
+{
+    
+    options.DataAnnotationLocalizerProvider = (type, factory) =>
+    {
+     
+        return factory.Create(typeof(WebAppCore.Resources.ValidationMessages));
+    };
+});
 builder.Services.AddRazorPages();
 
 builder.Services.AddRateLimiter(options =>

@@ -45,6 +45,7 @@ namespace WebAppCore.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
+            [Remote(action: "VerifyEmail", controller: "Validation", ErrorMessage = "Цей email вже зареєстрований")]
             public string Email { get; set; }
 
             [Required]

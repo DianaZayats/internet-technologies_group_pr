@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FullName_Required" xml:space="preserve">
+    <value>The 'Full Name' field is required</value>
+  </data>
+  <data name="FullName_StringLength" xml:space="preserve">
+    <value>The 'Full Name' field must contain between {2} and {1} characters</value>
+  </data>
+  <data name="Email_Required" xml:space="preserve">
+    <value>The 'Email' field is required</value>
+  </data>
+  <data name="Email_EmailAddress" xml:space="preserve">
+    <value>Please enter a valid email address</value>
+  </data>
+  <data name="Age_Required" xml:space="preserve">
+    <value>The 'Age' field is required</value>
+  </data>
+  <data name="Age_Range" xml:space="preserve">
+    <value>Age must be between {1} and {2} years</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>The 'Password' field is required</value>
+  </data>
+  <data name="Password_StringLength" xml:space="preserve">
+    <value>Password must contain between {2} and {1} characters</value>
+  </data>
+  <data name="ConfirmPassword_Required" xml:space="preserve">
+    <value>The 'Confirm Password' field is required</value>
+  </data>
+  <data name="ConfirmPassword_Compare" xml:space="preserve">
+    <value>Password and password confirmation do not match</value>
+  </data>
+  <data name="OrderAmount_Required" xml:space="preserve">
+    <value>The 'Order Amount' field is required</value>
+  </data>
+  <data name="OrderAmount_Range" xml:space="preserve">
+    <value>Order amount must be between {1} and {2}</value>
+  </data>
+  <data name="PromoCode_Remote" xml:space="preserve">
+    <value>Promo code is invalid for this order amount</value>
+  </data>
+  <data name="RecipeName_Required" xml:space="preserve">
+    <value>The 'Recipe Name' field is required</value>
+  </data>
+  <data name="RecipeName_StringLength" xml:space="preserve">
+    <value>The 'Recipe Name' field must contain between {2} and {1} characters</value>
+  </data>
+  <data name="Description_Required" xml:space="preserve">
+    <value>The 'Description' field is required</value>
+  </data>
+  <data name="Description_StringLength" xml:space="preserve">
+    <value>The 'Description' field must contain between {2} and {1} characters</value>
+  </data>
+  <data name="Category_Required" xml:space="preserve">
+    <value>The 'Category' field is required</value>
+  </data>
+  <data name="Difficulty_Required" xml:space="preserve">
+    <value>The 'Difficulty' field is required</value>
+  </data>
+  <data name="CookingTime_Required" xml:space="preserve">
+    <value>The 'Cooking Time' field is required</value>
+  </data>
+  <data name="CookingTime_Range" xml:space="preserve">
+    <value>Cooking time must be between {1} and {2} minutes</value>
+  </data>
+  <data name="CookingTime_Remote" xml:space="preserve">
+    <value>Cooking time does not match the recipe difficulty</value>
+  </data>
+  <data name="Ingredients_Required" xml:space="preserve">
+    <value>The 'Ingredients' field is required</value>
+  </data>
+  <data name="Ingredients_StringLength" xml:space="preserve">
+    <value>The 'Ingredients' field must contain between {2} and {1} characters</value>
+  </data>
+</root>
+
