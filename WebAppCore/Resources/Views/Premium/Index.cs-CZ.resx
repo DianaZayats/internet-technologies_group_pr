@@ -149,7 +149,7 @@
     <value>Prémiový přístup</value>
   </data>
   <data name="PremiumDescription" xml:space="preserve">
-    <value>Exkluzivní prémiové recepty dostupné pouze pro prémiové členy</value>
+    <value>Exkluzivní prémiové recepty dostupné pouze pro prémiové členy s více než 100 pracovními hodinami strávenými na webu</value>
   </data>
   <data name="NoPremiumRecipes" xml:space="preserve">
     <value>Prémiové recepty nejsou k dispozici</value>

@@ -149,7 +149,7 @@
     <value>Преміум доступ</value>
   </data>
   <data name="PremiumDescription" xml:space="preserve">
-    <value>Ексклюзивні преміум рецепти доступні тільки для преміум членів</value>
+    <value>Ексклюзивні преміум рецепти доступні тільки для преміум членів в яких більше 100 робочих годин проведених на сайті</value>
   </data>
   <data name="NoPremiumRecipes" xml:space="preserve">
     <value>Преміум рецепти недоступні</value>

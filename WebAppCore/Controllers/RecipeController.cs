@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using SlayLib.Data;
 using SlayLib.Models;
+using System;
+using System.Linq;
 using System.Security.Claims;
 using WebAppCore.ViewModels;
 
@@ -18,17 +22,20 @@ namespace WebAppCore.Controllers
         private readonly IAuthorizationService _authorizationService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RecipeController> _logger;
+        private readonly IWebHostEnvironment _environment;
 
         public RecipeController(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<ApplicationUser> userManager,
-            ILogger<RecipeController> logger)
+            ILogger<RecipeController> logger,
+            IWebHostEnvironment environment)
         {
             _context = context;
             _authorizationService = authorizationService;
             _userManager = userManager;
             _logger = logger;
+            _environment = environment;
         }
 
         // GET: Recipe
@@ -289,6 +296,8 @@ namespace WebAppCore.Controllers
                     Cuisine = model.Cuisine,
                     BudgetLevel = model.BudgetLevel,
                     Calories = model.Calories,
+                    IsPublic = true,
+                    IsPremium = false,
                     AuthorId = userId,
                     CreatedAt = DateTime.UtcNow
                 };
@@ -311,8 +320,17 @@ namespace WebAppCore.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Помилка при створенні рецепту");
-                ModelState.AddModelError("", "Сталася помилка при створенні рецепту. Спробуйте ще раз.");
+                _logger.LogError(ex, "Помилка при створенні рецепту: {Message}\nInnerException: {InnerException}\nStackTrace: {StackTrace}", 
+                    ex.Message, ex.InnerException?.Message, ex.StackTrace);
+                
+                // Всегда показываем детали ошибки для отладки
+                var errorMessage = $"Сталася помилка при створенні рецепту: {ex.Message}";
+                if (ex.InnerException != null)
+                {
+                    errorMessage += $" (Внутрішня помилка: {ex.InnerException.Message})";
+                }
+                
+                ModelState.AddModelError("", errorMessage);
                 return View(model);
             }
         }

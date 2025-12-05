@@ -149,7 +149,7 @@
     <value>Premium Access</value>
   </data>
   <data name="PremiumDescription" xml:space="preserve">
-    <value>Exclusive premium recipes available only to premium members</value>
+    <value>Exclusive premium recipes available only to premium members with more than 100 working hours spent on the site</value>
   </data>
   <data name="NoPremiumRecipes" xml:space="preserve">
     <value>No Premium Recipes Available</value>

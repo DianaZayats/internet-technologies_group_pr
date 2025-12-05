@@ -18,32 +18,35 @@
     </div>
 
     <!-- User Metrics -->
-    <div class="row g-4 mb-4">
-        <div class="col-md-4">
-            <div class="card-modern h-100 text-center p-4">
-                <div class="mb-3" style="font-size: 2.5rem;">⏱️</div>
-                <h5 class="fw-bold mb-2">@Localizer["Metrics_WorkingHours"]</h5>
-                <p class="fs-3 fw-bold mb-0" style="color: #ff6b35;">@(ViewData["WorkingHours"] ?? 0)</p>
-                <small class="text-muted">@Localizer["Metrics_Hours"]</small>
+    @{
+        var metrics = ViewData["Metrics"] as WebAppCore.ViewModels.PremiumMetricsViewModel;
+    }
+    @if (metrics != null)
+    {
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card-modern h-100 text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">📅</div>
+                    <h5 class="fw-bold mb-2">@Localizer["MetricsNextReview"]</h5>
+                    <p class="fs-5 fw-bold mb-0" style="color: #ff6b35;">@metrics.NextReviewDate.ToString("dd.MM.yyyy")</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-modern h-100 text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">📊</div>
+                    <h5 class="fw-bold mb-2">@Localizer["MetricsProductivity"]</h5>
+                    <p class="fs-3 fw-bold mb-0" style="color: #ff6b35;">@metrics.ProductivityScore.ToString("F2")</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-modern h-100 text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">💰</div>
+                    <h5 class="fw-bold mb-2">@Localizer["MetricsSubscription"]</h5>
+                    <p class="fs-3 fw-bold mb-0" style="color: #ff6b35;">$@metrics.SubscriptionFee.ToString("F2")</p>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card-modern h-100 text-center p-4">
-                <div class="mb-3" style="font-size: 2.5rem;">❤️</div>
-                <h5 class="fw-bold mb-2">@Localizer["Metrics_Favorites"]</h5>
-                <p class="fs-3 fw-bold mb-0" style="color: #ff6b35;">@(ViewData["FavoriteCount"] ?? 0)</p>
-                <small class="text-muted">@Localizer["Metrics_Recipes"]</small>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card-modern h-100 text-center p-4">
-                <div class="mb-3" style="font-size: 2.5rem;">📝</div>
-                <h5 class="fw-bold mb-2">@Localizer["Metrics_Created"]</h5>
-                <p class="fs-3 fw-bold mb-0" style="color: #ff6b35;">@(ViewData["RecipesCreated"] ?? 0)</p>
-                <small class="text-muted">@Localizer["Metrics_Recipes"]</small>
-            </div>
-        </div>
-    </div>
+    }
 
     @if (Model.Any())
     {

@@ -11,19 +11,38 @@
                 <h1 class="fw-bold" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                     @Model.Name
                 </h1>
-                @if (User.Identity?.IsAuthenticated == true)
-                {
-                    <button class="btn btn-sm favorite-btn-details" data-recipe-id="@Model.Id" style="border-radius: 50%; width: 50px; height: 50px; border: 2px solid #ff6b35;">
-                        @if (ViewData["IsFavorite"] as bool? == true)
-                        {
-                            <span style="color: #ff6b35; font-size: 1.5rem;">❤️</span>
-                        }
-                        else
-                        {
-                            <span style="font-size: 1.5rem;">🤍</span>
-                        }
-                    </button>
-                }
+                <div class="d-flex gap-2 align-items-center">
+                    @{
+                        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                        var userId = userIdClaim?.Value;
+                        var isAuthor = !string.IsNullOrEmpty(userId) && Model.AuthorId == userId;
+                    }
+                    @if (isAuthor)
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm rounded-pill" title="@Localizer["RecipeIndex_Edit"].Value">
+                            ✏️ @Localizer["RecipeIndex_Edit"].Value
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["RecipeIndex_DeleteConfirm"].Value');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill" title="@Localizer["RecipeIndex_Delete"].Value">
+                                🗑️ @Localizer["RecipeIndex_Delete"].Value
+                            </button>
+                        </form>
+                    }
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <button class="btn btn-sm favorite-btn-details" data-recipe-id="@Model.Id" style="border-radius: 50%; width: 50px; height: 50px; border: 2px solid #ff6b35;">
+                            @if (ViewData["IsFavorite"] as bool? == true)
+                            {
+                                <span style="color: #ff6b35; font-size: 1.5rem;">❤️</span>
+                            }
+                            else
+                            {
+                                <span style="font-size: 1.5rem;">🤍</span>
+                            }
+                        </button>
+                    }
+                </div>
             </div>
 
             <div class="mb-3">
@@ -239,22 +258,16 @@
 
                     <hr />
 
-                    @{
-                        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-                        var userId = userIdClaim?.Value;
-                        var isAuthor = !string.IsNullOrEmpty(userId) && Model.AuthorId == userId;
-                    }
-
                     @if (isAuthor)
                     {
                         <div class="d-grid gap-2 mb-2">
                             <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill">
-                                ✏️ @Localizer["RecipeIndex_Edit"]
+                                ✏️ @Localizer["RecipeIndex_Edit"].Value
                             </a>
-                            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('@Localizer["RecipeIndex_DeleteConfirm"]');">
+                            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('@Localizer["RecipeIndex_DeleteConfirm"].Value');">
                                 @Html.AntiForgeryToken()
                                 <button type="submit" class="btn btn-outline-danger w-100 rounded-pill">
-                                    🗑️ @Localizer["RecipeIndex_Delete"]
+                                    🗑️ @Localizer["RecipeIndex_Delete"].Value
                                 </button>
                             </form>
                         </div>

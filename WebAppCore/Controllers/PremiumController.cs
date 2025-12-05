@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SlayLib.Data;
+using System;
 using System.Security.Claims;
 using WebAppCore.ViewModels;
 
@@ -31,22 +32,15 @@ namespace WebAppCore.Controllers
             var workingHoursClaim = User.FindFirst("WorkingHours");
             var workingHours = workingHoursClaim != null && int.TryParse(workingHoursClaim.Value, out var hours) ? hours : 0;
 
-            // Підраховуємо статистику користувача
-            int favoriteCount = 0;
-            int recipesCreated = 0;
-
-            if (!string.IsNullOrEmpty(userId))
+            // Створюємо модель метрик
+            var metrics = new PremiumMetricsViewModel
             {
-                favoriteCount = await _context.RecipeFavorites
-                    .CountAsync(f => f.UserId == userId);
+                NextReviewDate = DateTime.UtcNow.AddMonths(1),
+                ProductivityScore = workingHours > 0 ? Math.Round((double)workingHours / 10.0, 2) : 0.0,
+                SubscriptionFee = 29.99m
+            };
 
-                recipesCreated = await _context.Recipes
-                    .CountAsync(r => r.AuthorId == userId);
-            }
-
-            ViewData["WorkingHours"] = workingHours;
-            ViewData["FavoriteCount"] = favoriteCount;
-            ViewData["RecipesCreated"] = recipesCreated;
+            ViewData["Metrics"] = metrics;
 
             // Отримуємо тільки преміум рецепти
             var recipes = await _context.Recipes
