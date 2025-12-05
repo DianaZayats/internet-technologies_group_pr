@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Додати рецепт";
+}
+@model WebAppCore.ViewModels.RecipeViewModel
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Заповніть форму для додавання нового рецепту</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            
+          
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+         
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Поле: Категорія -->
+            <div class="mb-3">
+                <label asp-for="Category" class="form-label"></label>
+                <select asp-for="Category" class="form-select">
+                    <option value="">-- Оберіть категорію --</option>
+                    <option value="Breakfast">Сніданок</option>
+                    <option value="Lunch">Обід</option>
+                    <option value="Dinner">Вечеря</option>
+                    <option value="Dessert">Десерт</option>
+                    <option value="Snack">Закуска</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            
+            <div class="mb-3">
+                <label asp-for="Difficulty" class="form-label"></label>
+                <select asp-for="Difficulty" class="form-select" id="Difficulty">
+                    <option value="">-- Оберіть складність --</option>
+                    <option value="Easy">Простий (5-30 хв)</option>
+                    <option value="Medium">Середній (15-60 хв)</option>
+                    <option value="Hard">Складний (30-180 хв)</option>
+                </select>
+                <span asp-validation-for="Difficulty" class="text-danger"></span>
+                <small class="form-text text-muted">Час приготування буде перевірено залежно від обраної складності</small>
+            </div>
+
+          
+            <div class="mb-3">
+                <label asp-for="CookingTime" class="form-label"></label>
+                <input asp-for="CookingTime" class="form-control" type="number" min="1" max="300" />
+                <span asp-validation-for="CookingTime" class="text-danger"></span>
+                <small class="form-text text-muted">
+                    Час приготування автоматично перевіряється залежно від складності:
+                    <ul class="mb-0 mt-2">
+                        <li><strong>Простий:</strong> 5-30 хвилин</li>
+                        <li><strong>Середній:</strong> 15-60 хвилин</li>
+                        <li><strong>Складний:</strong> 30-180 хвилин</li>
+                    </ul>
+                </small>
+            </div>
+
+           
+            <div class="mb-3">
+                <label asp-for="Ingredients" class="form-label"></label>
+                <textarea asp-for="Ingredients" class="form-control" rows="5" placeholder="Введіть список інгредієнтів, розділених комами або новими рядками"></textarea>
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Додати рецепт</button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Скасувати</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
