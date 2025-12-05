@@ -13,6 +13,7 @@
     <title>@ViewData["Title"] - WebAppCore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/recipes.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebAppCore.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -28,43 +29,49 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Головна
+                                @Localizer["Nav_Home"]
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="homeDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Головна сторінка</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Archive">Архів</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Privacy">Конфіденційність</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Nav_HomePage"]</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Archive">@Localizer["Nav_Archive"]</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Nav_Privacy"]</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="postDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Пости
+                                @Localizer["Nav_Posts"]
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="postDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Post" asp-action="Index">Список постів</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Post" asp-action="Create">Створити пост</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Post" asp-action="Index">@Localizer["Nav_PostList"]</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Post" asp-action="Create">@Localizer["Nav_CreatePost"]</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="recipeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Рецепти
+                                @Localizer["Nav_Recipes"]
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="recipeDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Recipe" asp-action="Create">Додати рецепт</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Recipe" asp-action="Index">@Localizer["Nav_AllRecipes"]</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Recipe" asp-action="Create">@Localizer["Nav_AddRecipe"]</a></li>
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Recipe" asp-action="Favorites">@Localizer["Nav_MyFavorites"]</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="ShoppingList" asp-action="Index">@Localizer["Nav_ShoppingList"]</a></li>
+                                }
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Premium" asp-action="Index">Premium</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Premium" asp-action="Index">@Localizer["Nav_Premium"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TestClaims" asp-action="Index">Тест Claims</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="TestClaims" asp-action="Index">@Localizer["Nav_TestClaims"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Зворотний зв'язок</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">@Localizer["Nav_Contact"]</a>
                         </li>
 
 
-                      
+
                         <li class="nav-item">
                             <a class="nav-link text-dark"
                                asp-controller="SelectLanguage"
@@ -73,7 +80,7 @@
                                 @Localizer["lblLanguageSwitcher"]
                             </a>
                         </li>
-                       
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

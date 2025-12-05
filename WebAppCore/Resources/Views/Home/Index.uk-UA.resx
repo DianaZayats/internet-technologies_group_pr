@@ -123,4 +123,94 @@
   <data name="Title" xml:space="preserve">
     <value>Домашня сторінка</value>
   </data>
+  <data name="WelcomeTitle" xml:space="preserve">
+    <value>Ласкаво просимо до CozyKitchen</value>
+  </data>
+  <data name="WelcomeSubtitle" xml:space="preserve">
+    <value>Відкривайте, діліться та насолоджуйтесь чудовими рецептами від нашої спільноти</value>
+  </data>
+  <data name="BrowseRecipes" xml:space="preserve">
+    <value>Переглянути рецепти</value>
+  </data>
+  <data name="AddRecipe" xml:space="preserve">
+    <value>Додати рецепт</value>
+  </data>
+  <data name="JoinUs" xml:space="preserve">
+    <value>Приєднатися</value>
+  </data>
+  <data name="FeaturedRecipes" xml:space="preserve">
+    <value>Рекомендовані рецепти</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Переглянути всі</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>Деталі</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>хв</value>
+  </data>
+  <data name="BrowseByCategory" xml:space="preserve">
+    <value>Перегляд за категоріями</value>
+  </data>
+  <data name="RecipesCount" xml:space="preserve">
+    <value>Рецептів</value>
+  </data>
+  <data name="ViewCategory" xml:space="preserve">
+    <value>Переглянути категорію</value>
+  </data>
+  <data name="NoRecipesInCategory" xml:space="preserve">
+    <value>Поки що немає рецептів</value>
+  </data>
+  <data name="MyFavorites" xml:space="preserve">
+    <value>Мої улюблені</value>
+  </data>
+  <data name="FavoritesDescription" xml:space="preserve">
+    <value>Доступ до ваших збережених улюблених рецептів</value>
+  </data>
+  <data name="ViewFavorites" xml:space="preserve">
+    <value>Переглянути улюблені</value>
+  </data>
+  <data name="ShoppingList" xml:space="preserve">
+    <value>Список покупок</value>
+  </data>
+  <data name="ShoppingListDescription" xml:space="preserve">
+    <value>Керуйте своїм списком покупок з рецептів</value>
+  </data>
+  <data name="ViewShoppingList" xml:space="preserve">
+    <value>Переглянути список покупок</value>
+  </data>
+  <data name="PremiumRecipes" xml:space="preserve">
+    <value>Преміум рецепти</value>
+  </data>
+  <data name="PremiumDescription" xml:space="preserve">
+    <value>Ексклюзивні преміум рецепти для членів</value>
+  </data>
+  <data name="ViewPremium" xml:space="preserve">
+    <value>Переглянути преміум</value>
+  </data>
+  <data name="Category_Breakfast" xml:space="preserve">
+    <value>Сніданок</value>
+  </data>
+  <data name="Category_Lunch" xml:space="preserve">
+    <value>Обід</value>
+  </data>
+  <data name="Category_Dinner" xml:space="preserve">
+    <value>Вечеря</value>
+  </data>
+  <data name="Category_Dessert" xml:space="preserve">
+    <value>Десерт</value>
+  </data>
+  <data name="Category_Snack" xml:space="preserve">
+    <value>Закуска</value>
+  </data>
+  <data name="Difficulty_Easy" xml:space="preserve">
+    <value>Простий</value>
+  </data>
+  <data name="Difficulty_Medium" xml:space="preserve">
+    <value>Середній</value>
+  </data>
+  <data name="Difficulty_Hard" xml:space="preserve">
+    <value>Складний</value>
+  </data>
 </root>

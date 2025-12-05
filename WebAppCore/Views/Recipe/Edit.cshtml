@@ -1,0 +1,138 @@
+@{
+    ViewData["Title"] = Localizer["RecipeEdit_Title"].Value;
+}
+@model WebAppCore.ViewModels.RecipeViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+<div class="container py-4" style="max-width: 900px;">
+    <h1 class="mb-4" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        ✏️ @ViewData["Title"]
+    </h1>
+
+    <h4 class="mb-4">@Localizer["RecipeEdit_Subtitle"].Value</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-modern">
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold"></label>
+                            <input asp-for="Name" class="form-control rounded-pill" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-semibold"></label>
+                            <textarea asp-for="Description" class="form-control rounded-3" rows="4"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Category" class="form-label fw-semibold"></label>
+                            <select asp-for="Category" class="form-select rounded-pill">
+                                <option value="">-- @Localizer["RecipeCreate_SelectCategory"].Value --</option>
+                                <option value="Breakfast">@Localizer["Category_Breakfast"].Value</option>
+                                <option value="Lunch">@Localizer["Category_Lunch"].Value</option>
+                                <option value="Dinner">@Localizer["Category_Dinner"].Value</option>
+                                <option value="Dessert">@Localizer["Category_Dessert"].Value</option>
+                                <option value="Snack">@Localizer["Category_Snack"].Value</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Difficulty" class="form-label fw-semibold"></label>
+                            <select asp-for="Difficulty" class="form-select rounded-pill" id="Difficulty">
+                                <option value="">-- @Localizer["RecipeCreate_SelectDifficulty"].Value --</option>
+                                <option value="Easy">@Localizer["Difficulty_Easy"].Value</option>
+                                <option value="Medium">@Localizer["Difficulty_Medium"].Value</option>
+                                <option value="Hard">@Localizer["Difficulty_Hard"].Value</option>
+                            </select>
+                            <span asp-validation-for="Difficulty" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PreparationTime" class="form-label fw-semibold"></label>
+                            <input asp-for="PreparationTime" class="form-control rounded-pill" type="number" min="1" max="600" />
+                            <span asp-validation-for="PreparationTime" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Servings" class="form-label fw-semibold"></label>
+                            <input asp-for="Servings" class="form-control rounded-pill" type="number" min="1" max="20" />
+                            <span asp-validation-for="Servings" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ImageUrl" class="form-label fw-semibold"></label>
+                            <input asp-for="ImageUrl" class="form-control rounded-pill" type="url" placeholder="https://..." />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="DietType" class="form-label fw-semibold"></label>
+                                <select asp-for="DietType" class="form-select rounded-pill">
+                                    <option value="">-- @Localizer["RecipeCreate_SelectDiet"].Value --</option>
+                                    <option value="vegan">@Localizer["DietType_Vegan"].Value</option>
+                                    <option value="keto">@Localizer["DietType_Keto"].Value</option>
+                                    <option value="gluten-free">@Localizer["DietType_GlutenFree"].Value</option>
+                                    <option value="dairy-free">@Localizer["DietType_DairyFree"].Value</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Cuisine" class="form-label fw-semibold"></label>
+                                <select asp-for="Cuisine" class="form-select rounded-pill">
+                                    <option value="">-- @Localizer["RecipeCreate_SelectCuisine"].Value --</option>
+                                    <option value="Ukrainian">@Localizer["Cuisine_Ukrainian"].Value</option>
+                                    <option value="Italian">@Localizer["Cuisine_Italian"].Value</option>
+                                    <option value="Asian">@Localizer["Cuisine_Asian"].Value</option>
+                                    <option value="French">@Localizer["Cuisine_French"].Value</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="BudgetLevel" class="form-label fw-semibold"></label>
+                                <select asp-for="BudgetLevel" class="form-select rounded-pill">
+                                    <option value="">-- @Localizer["RecipeCreate_SelectBudget"].Value --</option>
+                                    <option value="Cheap">@Localizer["Budget_Cheap"].Value</option>
+                                    <option value="Medium">@Localizer["Budget_Medium"].Value</option>
+                                    <option value="Expensive">@Localizer["Budget_Expensive"].Value</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Calories" class="form-label fw-semibold"></label>
+                            <input asp-for="Calories" class="form-control rounded-pill" type="number" min="0" max="5000" />
+                            <span asp-validation-for="Calories" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Ingredients" class="form-label fw-semibold"></label>
+                            <textarea asp-for="Ingredients" class="form-control rounded-3" rows="5" placeholder="@Localizer["RecipeCreate_IngredientsPlaceholder"].Value"></textarea>
+                            <span asp-validation-for="Ingredients" class="text-danger"></span>
+                            <small class="form-text text-muted">@Localizer["RecipeCreate_IngredientsHint"].Value</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-gradient rounded-pill px-5 py-2">@Localizer["RecipeEdit_Submit"].Value</button>
+                            <a asp-controller="Recipe" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary rounded-pill px-5 py-2 ms-2">@Localizer["RecipeEdit_Cancel"].Value</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

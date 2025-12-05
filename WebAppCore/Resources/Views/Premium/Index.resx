@@ -145,4 +145,31 @@
   <data name="YourHours" xml:space="preserve">
     <value>Your working hours: </value>
   </data>
+  <data name="PremiumAccess" xml:space="preserve">
+    <value>Premium Access</value>
+  </data>
+  <data name="PremiumDescription" xml:space="preserve">
+    <value>Exclusive premium recipes available only to premium members with more than 100 working hours spent on the site</value>
+  </data>
+  <data name="NoPremiumRecipes" xml:space="preserve">
+    <value>No Premium Recipes Available</value>
+  </data>
+  <data name="NoPremiumRecipesMessage" xml:space="preserve">
+    <value>There are no premium recipes available at the moment. Check back later!</value>
+  </data>
+  <data name="Metrics_WorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
+  <data name="Metrics_Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="Metrics_Favorites" xml:space="preserve">
+    <value>Favorite Recipes</value>
+  </data>
+  <data name="Metrics_Created" xml:space="preserve">
+    <value>Recipes Created</value>
+  </data>
+  <data name="Metrics_Recipes" xml:space="preserve">
+    <value>recipes</value>
+  </data>
 </root>

@@ -1,0 +1,191 @@
+/* Warm culinary-themed styles for recipe pages */
+
+/* Gradient buttons */
+.btn-gradient {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-gradient-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-gradient-success:hover {
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Modern card styles */
+.card-modern {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.2);
+}
+
+.recipe-card-modern {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.15);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.25);
+}
+
+.recipe-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.recipe-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.recipe-card-modern:hover .recipe-image-wrapper img {
+    transform: scale(1.1);
+}
+
+/* Badge styles */
+.recipe-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.badge-breakfast {
+    background: linear-gradient(135deg, #ffd89b 0%, #ffecd2 100%);
+    color: #8b4513;
+}
+
+.badge-lunch {
+    background: linear-gradient(135deg, #ff9a56 0%, #ffad56 100%);
+    color: white;
+}
+
+.badge-dinner {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: white;
+}
+
+.badge-dessert {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.badge-snack {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+/* Rounded inputs and selects */
+.form-control.rounded-pill,
+.form-select.rounded-pill {
+    border-radius: 50px !important;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.3s ease;
+}
+
+.form-control.rounded-pill:focus,
+.form-select.rounded-pill:focus {
+    border-color: #ff6b35;
+    box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+/* Rounded buttons with padding */
+.btn.rounded-pill {
+    border-radius: 50px !important;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+}
+
+/* Body layout */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin-bottom: 0 !important;
+}
+
+main {
+    padding-bottom: 2rem;
+}
+
+/* Navbar z-index fix */
+.navbar {
+    z-index: 1050;
+}
+
+.dropdown-menu {
+    z-index: 1051;
+}
+
+/* Warm color overrides */
+.text-primary {
+    color: #ff6b35 !important;
+}
+
+.bg-primary {
+    background-color: #ff6b35 !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+    color: white;
+}
+
+/* Contact page button fix */
+.btn-outline-primary {
+    border-color: #ff6b35;
+    color: #ff6b35;
+}
+
+.btn-outline-primary:hover {
+    background-color: #ff6b35;
+    border-color: #ff6b35;
+    color: white;
+}
+

@@ -1,0 +1,331 @@
+@{
+    ViewData["Title"] = Localizer["RecipeIndex_Title"];
+}
+@model IEnumerable<SlayLib.Models.Recipe>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+<div class="container py-4" style="max-width: 1400px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            🍳 @ViewData["Title"]
+        </h1>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <a asp-action="Create" class="btn btn-primary rounded-pill px-4 py-2">
+                ➕ @Localizer["RecipeIndex_AddRecipe"]
+            </a>
+        }
+    </div>
+
+    <!-- Фільтри та пошук -->
+    <div class="card shadow-sm mb-4 rounded-4">
+        <div class="card-body p-4">
+            <form method="get" asp-action="Index" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Category"]</label>
+                    <select name="category" class="form-select rounded-pill">
+                        <option value="">@Localizer["RecipeIndex_AllCategories"]</option>
+                        @if (ViewBag.Category == "Breakfast") { <option value="Breakfast" selected>@Localizer["Category_Breakfast"]</option> } else { <option value="Breakfast">@Localizer["Category_Breakfast"]</option> }
+                        @if (ViewBag.Category == "Lunch") { <option value="Lunch" selected>@Localizer["Category_Lunch"]</option> } else { <option value="Lunch">@Localizer["Category_Lunch"]</option> }
+                        @if (ViewBag.Category == "Dinner") { <option value="Dinner" selected>@Localizer["Category_Dinner"]</option> } else { <option value="Dinner">@Localizer["Category_Dinner"]</option> }
+                        @if (ViewBag.Category == "Dessert") { <option value="Dessert" selected>@Localizer["Category_Dessert"]</option> } else { <option value="Dessert">@Localizer["Category_Dessert"]</option> }
+                        @if (ViewBag.Category == "Snack") { <option value="Snack" selected>@Localizer["Category_Snack"]</option> } else { <option value="Snack">@Localizer["Category_Snack"]</option> }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Difficulty"]</label>
+                    <select name="difficulty" class="form-select rounded-pill">
+                        <option value="">@Localizer["RecipeIndex_AllDifficulties"]</option>
+                        @if (ViewBag.Difficulty == "Easy") { <option value="Easy" selected>@Localizer["Difficulty_Easy"]</option> } else { <option value="Easy">@Localizer["Difficulty_Easy"]</option> }
+                        @if (ViewBag.Difficulty == "Medium") { <option value="Medium" selected>@Localizer["Difficulty_Medium"]</option> } else { <option value="Medium">@Localizer["Difficulty_Medium"]</option> }
+                        @if (ViewBag.Difficulty == "Hard") { <option value="Hard" selected>@Localizer["Difficulty_Hard"]</option> } else { <option value="Hard">@Localizer["Difficulty_Hard"]</option> }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_MinTime"]</label>
+                    <input type="number" name="minTime" class="form-control rounded-pill" value="@ViewBag.MinTime" placeholder="0" min="0" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_MaxTime"]</label>
+                    <input type="number" name="maxTime" class="form-control rounded-pill" value="@ViewBag.MaxTime" placeholder="600" min="0" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Search"]</label>
+                    <input type="text" name="search" class="form-control rounded-pill" value="@ViewBag.Search" placeholder="@Localizer["RecipeIndex_SearchPlaceholder"]" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_DietType"]</label>
+                    <select name="dietType" class="form-select rounded-pill">
+                        <option value="">@Localizer["RecipeIndex_AllDietTypes"]</option>
+                        @if (ViewBag.DietType == "vegan") { <option value="vegan" selected>@Localizer["DietType_Vegan"]</option> } else { <option value="vegan">@Localizer["DietType_Vegan"]</option> }
+                        @if (ViewBag.DietType == "keto") { <option value="keto" selected>@Localizer["DietType_Keto"]</option> } else { <option value="keto">@Localizer["DietType_Keto"]</option> }
+                        @if (ViewBag.DietType == "gluten-free") { <option value="gluten-free" selected>@Localizer["DietType_GlutenFree"]</option> } else { <option value="gluten-free">@Localizer["DietType_GlutenFree"]</option> }
+                        @if (ViewBag.DietType == "dairy-free") { <option value="dairy-free" selected>@Localizer["DietType_DairyFree"]</option> } else { <option value="dairy-free">@Localizer["DietType_DairyFree"]</option> }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Cuisine"]</label>
+                    <select name="cuisine" class="form-select rounded-pill">
+                        <option value="">@Localizer["RecipeIndex_AllCuisines"]</option>
+                        @if (ViewBag.Cuisine == "Ukrainian") { <option value="Ukrainian" selected>@Localizer["Cuisine_Ukrainian"]</option> } else { <option value="Ukrainian">@Localizer["Cuisine_Ukrainian"]</option> }
+                        @if (ViewBag.Cuisine == "Italian") { <option value="Italian" selected>@Localizer["Cuisine_Italian"]</option> } else { <option value="Italian">@Localizer["Cuisine_Italian"]</option> }
+                        @if (ViewBag.Cuisine == "Asian") { <option value="Asian" selected>@Localizer["Cuisine_Asian"]</option> } else { <option value="Asian">@Localizer["Cuisine_Asian"]</option> }
+                        @if (ViewBag.Cuisine == "French") { <option value="French" selected>@Localizer["Cuisine_French"]</option> } else { <option value="French">@Localizer["Cuisine_French"]</option> }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_Budget"]</label>
+                    <select name="budgetLevel" class="form-select rounded-pill">
+                        <option value="">@Localizer["RecipeIndex_AllBudgetLevels"]</option>
+                        @if (ViewBag.BudgetLevel == "Cheap") { <option value="Cheap" selected>@Localizer["Budget_Cheap"]</option> } else { <option value="Cheap">@Localizer["Budget_Cheap"]</option> }
+                        @if (ViewBag.BudgetLevel == "Medium") { <option value="Medium" selected>@Localizer["Budget_Medium"]</option> } else { <option value="Medium">@Localizer["Budget_Medium"]</option> }
+                        @if (ViewBag.BudgetLevel == "Expensive") { <option value="Expensive" selected>@Localizer["Budget_Expensive"]</option> } else { <option value="Expensive">@Localizer["Budget_Expensive"]</option> }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_MinCalories"]</label>
+                    <input type="number" name="minCalories" class="form-control rounded-pill" value="@ViewBag.MinCalories" placeholder="0" min="0" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">@Localizer["RecipeIndex_MaxCalories"]</label>
+                    <input type="number" name="maxCalories" class="form-control rounded-pill" value="@ViewBag.MaxCalories" placeholder="5000" min="0" />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                        🔍 @Localizer["RecipeIndex_SearchButton"]
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 ms-2">
+                        @Localizer["RecipeIndex_Reset"]
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Список рецептів -->
+    @if (Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var recipe in Model)
+            {
+                var averageRating = ViewData[$"Rating_{recipe.Id}"] as double?;
+                var ratingCount = ViewData[$"RatingCount_{recipe.Id}"] as int? ?? 0;
+                var favoriteRecipeIds = ViewData["FavoriteRecipeIds"] as List<int> ?? new List<int>();
+                var isFavorite = favoriteRecipeIds.Contains(recipe.Id);
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm rounded-4 recipe-card" style="border: none; overflow: hidden;">
+                        <div style="position: relative; height: 200px; overflow: hidden;">
+                            <img src="@(recipe.ImageUrl ?? "https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=" + Uri.EscapeDataString(recipe.Name))"
+                                 class="card-img-top" alt="@recipe.Name"
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" />
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <button class="btn btn-sm position-absolute top-0 end-0 m-2 favorite-btn" 
+                                        data-recipe-id="@recipe.Id" 
+                                        style="background: rgba(255,255,255,0.9); border-radius: 50%; width: 40px; height: 40px; border: none;"
+                                        title="@(isFavorite ? Localizer["RecipeIndex_RemoveFavorite"].Value : Localizer["RecipeIndex_AddFavorite"].Value)">
+                                    @if (isFavorite)
+                                    {
+                                        <span style="color: #ff6b35;">❤️</span>
+                                    }
+                                    else
+                                    {
+                                        <span>🤍</span>
+                                    }
+                                </button>
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">@recipe.Name</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                @(recipe.Description.Length > 100 ? recipe.Description.Substring(0, 100) + "..." : recipe.Description)
+                            </p>
+                            <div class="mb-2">
+                                <span class="badge rounded-pill" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white;">
+                                    @GetCategoryName(recipe.Category)
+                                </span>
+                                <span class="badge rounded-pill bg-@GetDifficultyColor(recipe.Difficulty)">
+                                    @GetDifficultyName(recipe.Difficulty)
+                                </span>
+                                <span class="badge rounded-pill bg-secondary">⏱️ @recipe.PreparationTime @Localizer["RecipeIndex_Minutes"]</span>
+                            </div>
+                            @if (averageRating.HasValue)
+                            {
+                                <div class="mb-2">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <span style="color: @(i <= averageRating.Value ? "#ffc107" : "#ddd");">⭐</span>
+                                    }
+                                    <small class="text-muted">(@ratingCount)</small>
+                                </div>
+                            }
+                                        <div class="mt-auto">
+                                            <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-gradient rounded-pill w-100 mb-2">
+                                                @Localizer["RecipeIndex_ViewDetails"]
+                                            </a>
+                                            @{
+                                                var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                                                var userId = userIdClaim?.Value;
+                                                var isAuthor = !string.IsNullOrEmpty(userId) && recipe.AuthorId == userId;
+                                            }
+                                            @if (isAuthor)
+                                            {
+                                                <div class="d-flex gap-2">
+                                                    <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-outline-primary rounded-pill flex-fill">
+                                                        ✏️ @Localizer["RecipeIndex_Edit"]
+                                                    </a>
+                                                    <form asp-action="Delete" asp-route-id="@recipe.Id" method="post" class="flex-fill" onsubmit="return confirm('@Localizer["RecipeIndex_DeleteConfirm"]');">
+                                                        @Html.AntiForgeryToken()
+                                                        <button type="submit" class="btn btn-outline-danger rounded-pill w-100">
+                                                            🗑️ @Localizer["RecipeIndex_Delete"]
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            }
+                                        </div>
+                        </div>
+                        <div class="card-footer bg-light" style="border-top: 1px solid rgba(255,107,53,0.1);">
+                            <small class="text-muted">
+                                👤 @(recipe.Author?.FirstName ?? "Невідомо") @(recipe.Author?.LastName ?? "")
+                                <br />
+                                📅 @recipe.CreatedAt.ToString("dd.MM.yyyy")
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center rounded-4">
+            <h4>@Localizer["RecipeIndex_NoRecipes"]</h4>
+            <p>@Localizer["RecipeIndex_NoRecipesMessage"]</p>
+        </div>
+    }
+</div>
+
+@functions {
+    string GetCategoryName(string category)
+    {
+        return category switch
+        {
+            "Breakfast" => Localizer["Category_Breakfast"].Value,
+            "Lunch" => Localizer["Category_Lunch"].Value,
+            "Dinner" => Localizer["Category_Dinner"].Value,
+            "Dessert" => Localizer["Category_Dessert"].Value,
+            "Snack" => Localizer["Category_Snack"].Value,
+            _ => category
+        };
+    }
+
+    string GetDifficultyName(string difficulty)
+    {
+        return difficulty switch
+        {
+            "Easy" => Localizer["Difficulty_Easy"].Value,
+            "Medium" => Localizer["Difficulty_Medium"].Value,
+            "Hard" => Localizer["Difficulty_Hard"].Value,
+            _ => difficulty
+        };
+    }
+
+    string GetDifficultyColor(string difficulty)
+    {
+        return difficulty switch
+        {
+            "Easy" => "success",
+            "Medium" => "warning",
+            "Hard" => "danger",
+            _ => "secondary"
+        };
+    }
+}
+
+@Html.AntiForgeryToken()
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                btn.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const recipeId = this.dataset.recipeId;
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '@Url.Action("ToggleFavorite", "Recipe")';
+                    
+                    // Get anti-forgery token from the page
+                    const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                    if (token) {
+                        const tokenInput = document.createElement('input');
+                        tokenInput.type = 'hidden';
+                        tokenInput.name = '__RequestVerificationToken';
+                        tokenInput.value = token;
+                        form.appendChild(tokenInput);
+                    }
+                    
+                    const recipeIdInput = document.createElement('input');
+                    recipeIdInput.type = 'hidden';
+                    recipeIdInput.name = 'recipeId';
+                    recipeIdInput.value = recipeId;
+                    form.appendChild(recipeIdInput);
+                    
+                    document.body.appendChild(form);
+                    
+                    try {
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form)
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            const icon = this.querySelector('span');
+                            const title = this.getAttribute('title');
+                            
+                            if (data.isFavorite) {
+                                icon.textContent = '❤️';
+                                icon.style.color = '#ff6b35';
+                                this.setAttribute('title', '@Localizer["RecipeIndex_RemoveFavorite"].Value');
+                            } else {
+                                icon.textContent = '🤍';
+                                icon.style.color = '';
+                                this.setAttribute('title', '@Localizer["RecipeIndex_AddFavorite"].Value');
+                            }
+                        } else {
+                            console.error('Failed to toggle favorite:', response.statusText);
+                        }
+                    } catch (error) {
+                        console.error('Error toggling favorite:', error);
+                    } finally {
+                        document.body.removeChild(form);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<style>
+    .recipe-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .recipe-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0.5rem 1.5rem rgba(255, 107, 53, 0.2) !important;
+    }
+
+    .recipe-card img {
+        transition: transform 0.5s ease;
+    }
+
+    .recipe-card:hover img {
+        transform: scale(1.1);
+    }
+</style>
+

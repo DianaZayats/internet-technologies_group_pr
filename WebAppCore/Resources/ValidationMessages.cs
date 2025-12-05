@@ -90,6 +90,43 @@ namespace WebAppCore.Resources
         
         public static string Ingredients_StringLength => 
             GetResourceManager().GetString("Ingredients_StringLength") ?? "Ingredients_StringLength";
+        
+        // Display name properties
+        public static string RecipeName => 
+            GetResourceManager().GetString("RecipeName") ?? "RecipeName";
+        
+        public static string Description => 
+            GetResourceManager().GetString("Description") ?? "Description";
+        
+        public static string Category => 
+            GetResourceManager().GetString("Category") ?? "Category";
+        
+        public static string Difficulty => 
+            GetResourceManager().GetString("Difficulty") ?? "Difficulty";
+        
+        public static string PreparationTime => 
+            GetResourceManager().GetString("PreparationTime") ?? "PreparationTime";
+        
+        public static string Servings => 
+            GetResourceManager().GetString("Servings") ?? "Servings";
+        
+        public static string ImageUrl => 
+            GetResourceManager().GetString("ImageUrl") ?? "ImageUrl";
+        
+        public static string DietType => 
+            GetResourceManager().GetString("DietType") ?? "DietType";
+        
+        public static string Cuisine => 
+            GetResourceManager().GetString("Cuisine") ?? "Cuisine";
+        
+        public static string BudgetLevel => 
+            GetResourceManager().GetString("BudgetLevel") ?? "BudgetLevel";
+        
+        public static string Calories => 
+            GetResourceManager().GetString("Calories") ?? "Calories";
+        
+        public static string Ingredients => 
+            GetResourceManager().GetString("Ingredients") ?? "Ingredients";
     }
 }
 

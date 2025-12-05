@@ -1,0 +1,477 @@
+@{
+    ViewData["Title"] = Model.Name;
+}
+@model SlayLib.Models.Recipe
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+<div class="container py-4" style="max-width: 1200px;">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <h1 class="fw-bold" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    @Model.Name
+                </h1>
+                <div class="d-flex gap-2 align-items-center">
+                    @{
+                        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                        var userId = userIdClaim?.Value;
+                        var isAuthor = !string.IsNullOrEmpty(userId) && Model.AuthorId == userId;
+                    }
+                    @if (isAuthor)
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm rounded-pill" title="@Localizer["RecipeIndex_Edit"].Value">
+                            ✏️ @Localizer["RecipeIndex_Edit"].Value
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline" onsubmit="return confirm('@Localizer["RecipeIndex_DeleteConfirm"].Value');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill" title="@Localizer["RecipeIndex_Delete"].Value">
+                                🗑️ @Localizer["RecipeIndex_Delete"].Value
+                            </button>
+                        </form>
+                    }
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <button class="btn btn-sm favorite-btn-details" data-recipe-id="@Model.Id" style="border-radius: 50%; width: 50px; height: 50px; border: 2px solid #ff6b35;">
+                            @if (ViewData["IsFavorite"] as bool? == true)
+                            {
+                                <span style="color: #ff6b35; font-size: 1.5rem;">❤️</span>
+                            }
+                            else
+                            {
+                                <span style="font-size: 1.5rem;">🤍</span>
+                            }
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <span class="badge rounded-pill me-2" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white;">
+                    @GetCategoryName(Model.Category)
+                </span>
+                <span class="badge rounded-pill bg-@GetDifficultyColor(Model.Difficulty) me-2">
+                    @GetDifficultyName(Model.Difficulty)
+                </span>
+                <span class="badge rounded-pill bg-secondary">⏱️ @Model.PreparationTime хв</span>
+                @if (Model.Calories.HasValue)
+                {
+                    <span class="badge rounded-pill bg-info">🔥 @Model.Calories ккал</span>
+                }
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <div class="mb-4 rounded-4 overflow-hidden" style="height: 400px;">
+                    <img src="@Model.ImageUrl" alt="@Model.Name" class="w-100 h-100" style="object-fit: cover;" />
+                </div>
+            }
+
+            <div class="card shadow-sm mb-4 rounded-4">
+                <div class="card-header" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; border-radius: 1rem 1rem 0 0;">
+                    <h5 class="mb-0">📝 Опис</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@Model.Description</p>
+                </div>
+            </div>
+
+            <!-- Portion Selector -->
+            <div class="card shadow-sm mb-4 rounded-4">
+                <div class="card-body">
+                    <label class="form-label fw-semibold">Кількість порцій:</label>
+                    <select id="servingsSelector" class="form-select rounded-pill" style="max-width: 200px;">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            <option value="@i" selected="@(i == Model.Servings)">@i порцій</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="card shadow-sm mb-4 rounded-4">
+                <div class="card-header" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border-radius: 1rem 1rem 0 0;">
+                    <h5 class="mb-0">🥘 Інгредієнти</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush" id="ingredientsList">
+                        @foreach (var ingredient in Model.Ingredients ?? new List<SlayLib.Models.Ingredient>())
+                        {
+                            <li class="list-group-item border-0" data-base-quantity="@(ingredient.Quantity ?? "1")" data-base-servings="@Model.Servings">
+                                <span class="ingredient-quantity">@(ingredient.Quantity ?? "")</span>
+                                @if (!string.IsNullOrEmpty(ingredient.Unit))
+                                {
+                                    <span>@ingredient.Unit</span>
+                                }
+                                <span class="fw-semibold">@ingredient.Name</span>
+                            </li>
+                        }
+                    </ul>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <button class="btn btn-primary rounded-pill mt-3" onclick="addToShoppingList(@Model.Id)">
+                            🛒 Додати до списку покупок
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <!-- Rating -->
+            @if (ViewData["AverageRating"] != null)
+            {
+                <div class="card shadow-sm mb-4 rounded-4">
+                    <div class="card-body">
+                        <h5 class="fw-semibold">Рейтинг</h5>
+                        <div class="mb-2">
+                            @{
+                                var avgRating = (double)ViewData["AverageRating"];
+                                var ratingCount = ViewData["RatingCount"] as int? ?? 0;
+                            }
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <span style="color: @(i <= avgRating ? "#ffc107" : "#ddd"); font-size: 1.5rem;">⭐</span>
+                            }
+                            <span class="ms-2">@avgRating.ToString("F1") (@ratingCount оцінок)</span>
+                        </div>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <div class="rating-stars" data-recipe-id="@Model.Id">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <span class="star" data-rating="@i" style="cursor: pointer; font-size: 2rem; color: @(i <= (ViewData["UserRating"] as int? ?? 0) ? "#ffc107" : "#ddd");">
+                                        ⭐
+                                    </span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <!-- Comments -->
+            <div class="card shadow-sm mb-4 rounded-4">
+                <div class="card-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 1rem 1rem 0 0;">
+                    <h5 class="mb-0">💬 Коментарі (@(Model.Comments?.Count ?? 0))</h5>
+                </div>
+                <div class="card-body">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <form id="commentForm" class="mb-4">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="recipeId" value="@Model.Id" />
+                            <div class="mb-3">
+                                <textarea name="content" class="form-control rounded-3" rows="3" placeholder="Додайте коментар..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">Додати коментар</button>
+                        </form>
+                    }
+                    <div id="commentsList">
+                        @if (Model.Comments != null && Model.Comments.Any())
+                        {
+                            @foreach (var comment in Model.Comments.OrderByDescending(c => c.CreatedAt))
+                            {
+                                <div class="border-bottom pb-3 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <strong>@(comment.Author?.FirstName ?? "Невідомо") @(comment.Author?.LastName ?? "")</strong>
+                                        <small class="text-muted">@comment.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                                    </div>
+                                    <p class="mb-0 mt-2">@comment.Content</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted">Поки що немає коментарів. Будьте першим!</p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Recipes -->
+            @if (ViewData["SimilarRecipes"] != null)
+            {
+                var similarRecipes = ViewData["SimilarRecipes"] as List<SlayLib.Models.Recipe>;
+                if (similarRecipes != null && similarRecipes.Any())
+                {
+                    <div class="card shadow-sm mb-4 rounded-4">
+                        <div class="card-header" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; border-radius: 1rem 1rem 0 0;">
+                            <h5 class="mb-0">🔗 Схожі рецепти</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                @foreach (var similar in similarRecipes.Take(3))
+                                {
+                                    <div class="col-md-4">
+                                        <div class="card h-100 shadow-sm rounded-4" style="border: none;">
+                                            <img src="@(similar.ImageUrl ?? "https://via.placeholder.com/300x200")" 
+                                                 class="card-img-top" alt="@similar.Name"
+                                                 style="height: 150px; object-fit: cover;" />
+                                            <div class="card-body">
+                                                <h6 class="card-title">@similar.Name</h6>
+                                                <p class="card-text small text-muted">@(similar.Description.Length > 60 ? similar.Description.Substring(0, 60) + "..." : similar.Description)</p>
+                                                <a asp-action="Details" asp-route-id="@similar.Id" class="btn btn-sm btn-primary rounded-pill w-100">
+                                                    Переглянути
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm sticky-top rounded-4" style="top: 20px; border: none;">
+                <div class="card-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 1rem 1rem 0 0;">
+                    <h5 class="mb-0">ℹ️ Інформація</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Автор:</strong><br />
+                    👤 @(Model.Author?.FirstName ?? "Невідомо") @(Model.Author?.LastName ?? "")</p>
+                    
+                    <p><strong>Створено:</strong><br />
+                    📅 @Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</p>
+                    
+                    @if (Model.UpdatedAt.HasValue)
+                    {
+                        <p><strong>Оновлено:</strong><br />
+                        📅 @Model.UpdatedAt.Value.ToString("dd.MM.yyyy HH:mm")</p>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.Cuisine))
+                    {
+                        <p><strong>Кухня:</strong><br />@Model.Cuisine</p>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.DietType))
+                    {
+                        <p><strong>Тип дієти:</strong><br />@Model.DietType</p>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.BudgetLevel))
+                    {
+                        <p><strong>Бюджет:</strong><br />@Model.BudgetLevel</p>
+                    }
+
+                    <hr />
+
+                    @if (isAuthor)
+                    {
+                        <div class="d-grid gap-2 mb-2">
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill">
+                                ✏️ @Localizer["RecipeIndex_Edit"].Value
+                            </a>
+                            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('@Localizer["RecipeIndex_DeleteConfirm"].Value');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-outline-danger w-100 rounded-pill">
+                                    🗑️ @Localizer["RecipeIndex_Delete"].Value
+                                </button>
+                            </form>
+                        </div>
+                    }
+
+                    <a asp-action="Index" class="btn btn-outline-secondary w-100 rounded-pill">
+                        ← @Localizer["RecipeIndex_BackToList"]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    string GetCategoryName(string category)
+    {
+        return category switch
+        {
+            "Breakfast" => Localizer["Category_Breakfast"].Value,
+            "Lunch" => Localizer["Category_Lunch"].Value,
+            "Dinner" => Localizer["Category_Dinner"].Value,
+            "Dessert" => Localizer["Category_Dessert"].Value,
+            "Snack" => Localizer["Category_Snack"].Value,
+            _ => category
+        };
+    }
+
+    string GetDifficultyName(string difficulty)
+    {
+        return difficulty switch
+        {
+            "Easy" => Localizer["Difficulty_Easy"].Value,
+            "Medium" => Localizer["Difficulty_Medium"].Value,
+            "Hard" => Localizer["Difficulty_Hard"].Value,
+            _ => difficulty
+        };
+    }
+
+    string GetDifficultyColor(string difficulty)
+    {
+        return difficulty switch
+        {
+            "Easy" => "success",
+            "Medium" => "warning",
+            "Hard" => "danger",
+            _ => "secondary"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        // Portion recalculation
+        document.getElementById('servingsSelector')?.addEventListener('change', function() {
+            const selectedServings = parseInt(this.value);
+            const baseServings = @Model.Servings;
+            const multiplier = selectedServings / baseServings;
+
+            document.querySelectorAll('#ingredientsList li').forEach(li => {
+                const baseQuantity = parseFloat(li.dataset.baseQuantity) || 0;
+                const newQuantity = baseQuantity * multiplier;
+                const quantitySpan = li.querySelector('.ingredient-quantity');
+                if (quantitySpan) {
+                    quantitySpan.textContent = newQuantity > 0 ? newQuantity.toFixed(2) : '';
+                }
+            });
+        });
+
+        // Favorite toggle
+        document.querySelector('.favorite-btn-details')?.addEventListener('click', async function() {
+            const recipeId = this.dataset.recipeId;
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '@Url.Action("ToggleFavorite", "Recipe")';
+            
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+            if (token) {
+                const tokenInput = document.createElement('input');
+                tokenInput.type = 'hidden';
+                tokenInput.name = '__RequestVerificationToken';
+                tokenInput.value = token;
+                form.appendChild(tokenInput);
+            }
+            
+            const recipeIdInput = document.createElement('input');
+            recipeIdInput.type = 'hidden';
+            recipeIdInput.name = 'recipeId';
+            recipeIdInput.value = recipeId;
+            form.appendChild(recipeIdInput);
+            
+            document.body.appendChild(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                const icon = this.querySelector('span');
+                if (data.isFavorite) {
+                    icon.textContent = '❤️';
+                    icon.style.color = '#ff6b35';
+                } else {
+                    icon.textContent = '🤍';
+                    icon.style.color = '';
+                }
+            }
+            
+            document.body.removeChild(form);
+        });
+
+        // Rating
+        document.querySelectorAll('.star')?.forEach(star => {
+            star.addEventListener('click', async function() {
+                const rating = parseInt(this.dataset.rating);
+                const recipeId = this.closest('.rating-stars').dataset.recipeId;
+                
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '@Url.Action("Rate", "Recipe")';
+                
+                const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                if (token) {
+                    const tokenInput = document.createElement('input');
+                    tokenInput.type = 'hidden';
+                    tokenInput.name = '__RequestVerificationToken';
+                    tokenInput.value = token;
+                    form.appendChild(tokenInput);
+                }
+                
+                form.appendChild(createHiddenInput('recipeId', recipeId));
+                form.appendChild(createHiddenInput('rating', rating));
+                
+                document.body.appendChild(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form)
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    location.reload(); // Reload to show updated rating
+                }
+                
+                document.body.removeChild(form);
+            });
+        });
+
+        // Add comment
+        document.getElementById('commentForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            const response = await fetch('@Url.Action("AddComment", "Recipe")', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                const html = await response.text();
+                const commentsList = document.getElementById('commentsList');
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                commentsList.insertBefore(tempDiv.firstElementChild, commentsList.firstChild);
+                this.reset();
+            }
+        });
+
+        // Add to shopping list
+        async function addToShoppingList(recipeId) {
+            const servings = parseInt(document.getElementById('servingsSelector').value);
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '@Url.Action("AddToShoppingList", "Recipe")';
+            
+            const token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+            if (token) {
+                form.appendChild(createHiddenInput('__RequestVerificationToken', token));
+            }
+            
+            form.appendChild(createHiddenInput('recipeId', recipeId));
+            form.appendChild(createHiddenInput('servings', servings));
+            
+            document.body.appendChild(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            });
+            
+            if (response.ok) {
+                alert('Інгредієнти додано до списку покупок!');
+            }
+            
+            document.body.removeChild(form);
+        }
+
+        function createHiddenInput(name, value) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = value;
+            return input;
+        }
+    </script>
+}
+

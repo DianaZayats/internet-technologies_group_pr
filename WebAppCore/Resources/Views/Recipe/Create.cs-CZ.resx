@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RecipeCreate_Title" xml:space="preserve">
+    <value>Přidat recept</value>
+  </data>
+  <data name="RecipeCreate_Subtitle" xml:space="preserve">
+    <value>Vyplňte formulář pro přidání nového receptu</value>
+  </data>
+  <data name="RecipeCreate_SelectCategory" xml:space="preserve">
+    <value>Vyberte kategorii</value>
+  </data>
+  <data name="RecipeCreate_SelectDifficulty" xml:space="preserve">
+    <value>Vyberte obtížnost</value>
+  </data>
+  <data name="RecipeCreate_SelectDiet" xml:space="preserve">
+    <value>Vyberte typ diety</value>
+  </data>
+  <data name="RecipeCreate_SelectCuisine" xml:space="preserve">
+    <value>Vyberte kuchyni</value>
+  </data>
+  <data name="RecipeCreate_SelectBudget" xml:space="preserve">
+    <value>Vyberte rozpočet</value>
+  </data>
+  <data name="RecipeCreate_IngredientsPlaceholder" xml:space="preserve">
+    <value>Zadejte seznam ingrediencí, oddělených čárkami nebo novými řádky</value>
+  </data>
+  <data name="RecipeCreate_IngredientsHint" xml:space="preserve">
+    <value>Formát: množství jednotka název (např.: 2 šálky mouky)</value>
+  </data>
+  <data name="RecipeCreate_Submit" xml:space="preserve">
+    <value>Přidat recept</value>
+  </data>
+  <data name="RecipeCreate_Cancel" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="Category_Breakfast" xml:space="preserve">
+    <value>Snídaně</value>
+  </data>
+  <data name="Category_Lunch" xml:space="preserve">
+    <value>Oběd</value>
+  </data>
+  <data name="Category_Dinner" xml:space="preserve">
+    <value>Večeře</value>
+  </data>
+  <data name="Category_Dessert" xml:space="preserve">
+    <value>Dezert</value>
+  </data>
+  <data name="Category_Snack" xml:space="preserve">
+    <value>Svačina</value>
+  </data>
+  <data name="Difficulty_Easy" xml:space="preserve">
+    <value>Snadné</value>
+  </data>
+  <data name="Difficulty_Medium" xml:space="preserve">
+    <value>Střední</value>
+  </data>
+  <data name="Difficulty_Hard" xml:space="preserve">
+    <value>Těžké</value>
+  </data>
+  <data name="DietType_Vegan" xml:space="preserve">
+    <value>Veganské</value>
+  </data>
+  <data name="DietType_Keto" xml:space="preserve">
+    <value>Keto</value>
+  </data>
+  <data name="DietType_GlutenFree" xml:space="preserve">
+    <value>Bez lepku</value>
+  </data>
+  <data name="DietType_DairyFree" xml:space="preserve">
+    <value>Bez mléčných výrobků</value>
+  </data>
+  <data name="Cuisine_Ukrainian" xml:space="preserve">
+    <value>Ukrajinská</value>
+  </data>
+  <data name="Cuisine_Italian" xml:space="preserve">
+    <value>Italská</value>
+  </data>
+  <data name="Cuisine_Asian" xml:space="preserve">
+    <value>Asijská</value>
+  </data>
+  <data name="Cuisine_French" xml:space="preserve">
+    <value>Francouzská</value>
+  </data>
+  <data name="Budget_Cheap" xml:space="preserve">
+    <value>Levné</value>
+  </data>
+  <data name="Budget_Medium" xml:space="preserve">
+    <value>Střední</value>
+  </data>
+  <data name="Budget_Expensive" xml:space="preserve">
+    <value>Drahé</value>
+  </data>
+</root>
+

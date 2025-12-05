@@ -42,7 +42,7 @@ if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("WebAppCore")));
 
 builder.Services.AddScoped<IMitRepository, SlaySqlServerRepository>();
 
@@ -64,6 +64,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 // Реєстрація обробників авторизації
 builder.Services.AddScoped<IAuthorizationHandler, IsResourceOwnerHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, IsRecipeOwnerHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, MinimumWorkingHoursHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ForumAccessHandler>();
 
@@ -184,6 +185,58 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 var app = builder.Build();
+
+// Apply pending migrations automatically and fix CookingTime column
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    
+    try
+    {
+        // Применяем все неприменённые миграции автоматически
+        await context.Database.MigrateAsync();
+        logger.LogInformation("Миграции базы данных применены успешно");
+        
+        // Дополнительно проверяем и исправляем колонку CookingTime -> PreparationTime
+        // Это гарантирует, что колонка будет переименована даже если миграция не сработала
+        await context.Database.ExecuteSqlRawAsync(@"
+            IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Recipes')
+            BEGIN
+                -- Если существует CookingTime и не существует PreparationTime, переименовываем
+                IF EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[dbo].[Recipes]') AND name = 'CookingTime')
+                    AND NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[dbo].[Recipes]') AND name = 'PreparationTime')
+                BEGIN
+                    EXEC sp_rename '[dbo].[Recipes].[CookingTime]', 'PreparationTime', 'COLUMN';
+                    PRINT 'Колонка CookingTime переименована в PreparationTime';
+                END
+                
+                -- Если оба существуют, удаляем CookingTime
+                IF EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[dbo].[Recipes]') AND name = 'CookingTime')
+                    AND EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID(N'[dbo].[Recipes]') AND name = 'PreparationTime')
+                BEGIN
+                    ALTER TABLE [Recipes] DROP COLUMN [CookingTime];
+                    PRINT 'Колонка CookingTime удалена (PreparationTime уже существует)';
+                END
+            END
+        ");
+        logger.LogInformation("Проверка и исправление колонки CookingTime завершена");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Ошибка при применении миграций базы данных или исправлении колонки");
+        // Не пробрасываем исключение, чтобы приложение могло запуститься
+        // Но логируем ошибку для диагностики
+    }
+}
+
+// Seed database with initial recipes
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    await SeedData.SeedRecipesAsync(context, userManager);
+}
 
 var localizationOptions = app.Services
     .GetRequiredService<IOptions<RequestLocalizationOptions>>()
