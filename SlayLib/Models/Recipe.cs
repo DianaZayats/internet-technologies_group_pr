@@ -64,6 +64,12 @@ namespace SlayLib.Models
         public List<RecipeRating>? Ratings { get; set; }
         public List<RecipeFavorite>? Favorites { get; set; }
 
+        [NotMapped]
+        public double? AverageRating { get; set; }
+
+        [NotMapped]
+        public int? RatingCount { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
     }

@@ -29,20 +29,19 @@ public class HomeController : Controller
         _context = context;
     }
 
-    [AllowAnonymous]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int featuredPage = 1)
     {
-        // Get featured recipes (most recent public recipes)
-        var featuredRecipes = await _context.Recipes
+        int pageSize = 4;
+        var featuredQuery = _context.Recipes
             .Include(r => r.Author)
             .Include(r => r.Ratings)
             .Where(r => r.IsPublic)
             .OrderByDescending(r => r.CreatedAt)
-            .Take(6)
-            .ToListAsync();
+            .AsQueryable();
 
-        // Get recipes by category
-        var breakfastRecipes = await _context.Recipes
+        var featuredRecipes = await PaginateList<Recipe>.CreateAsync(featuredQuery, featuredPage, pageSize);
+
+        ViewData["BreakfastRecipes"] = await _context.Recipes
             .Include(r => r.Author)
             .Include(r => r.Ratings)
             .Where(r => r.IsPublic && r.Category == "Breakfast")
@@ -50,7 +49,7 @@ public class HomeController : Controller
             .Take(4)
             .ToListAsync();
 
-        var lunchRecipes = await _context.Recipes
+        ViewData["LunchRecipes"] = await _context.Recipes
             .Include(r => r.Author)
             .Include(r => r.Ratings)
             .Where(r => r.IsPublic && r.Category == "Lunch")
@@ -58,7 +57,7 @@ public class HomeController : Controller
             .Take(4)
             .ToListAsync();
 
-        var dinnerRecipes = await _context.Recipes
+        ViewData["DinnerRecipes"] = await _context.Recipes
             .Include(r => r.Author)
             .Include(r => r.Ratings)
             .Where(r => r.IsPublic && r.Category == "Dinner")
@@ -66,7 +65,7 @@ public class HomeController : Controller
             .Take(4)
             .ToListAsync();
 
-        var dessertRecipes = await _context.Recipes
+        ViewData["DessertRecipes"] = await _context.Recipes
             .Include(r => r.Author)
             .Include(r => r.Ratings)
             .Where(r => r.IsPublic && r.Category == "Dessert")
@@ -74,24 +73,23 @@ public class HomeController : Controller
             .Take(4)
             .ToListAsync();
 
-        // Calculate average ratings
-        foreach (var recipe in featuredRecipes.Concat(breakfastRecipes).Concat(lunchRecipes).Concat(dinnerRecipes).Concat(dessertRecipes))
+        foreach (var recipe in featuredRecipes)
         {
             if (recipe.Ratings != null && recipe.Ratings.Any())
             {
-                ViewData[$"Rating_{recipe.Id}"] = recipe.Ratings.Average(r => r.Rating);
-                ViewData[$"RatingCount_{recipe.Id}"] = recipe.Ratings.Count;
+                recipe.AverageRating = recipe.Ratings.Average(r => r.Rating);
+                recipe.RatingCount = recipe.Ratings.Count;
             }
         }
+        int totalRecipes = await featuredQuery.CountAsync();
+        ViewBag.FeaturedRecipes = featuredRecipes;
+        ViewBag.FeaturedPage = featuredPage;
+        ViewBag.FeaturedTotalPages = (int)Math.Ceiling(totalRecipes / (double)pageSize);
 
-        ViewData["FeaturedRecipes"] = featuredRecipes;
-        ViewData["BreakfastRecipes"] = breakfastRecipes;
-        ViewData["LunchRecipes"] = lunchRecipes;
-        ViewData["DinnerRecipes"] = dinnerRecipes;
-        ViewData["DessertRecipes"] = dessertRecipes;
-
-        return View();
+        return View(featuredRecipes);
     }
+
+
 
     public IActionResult Privacy()
     {
@@ -118,4 +116,5 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
 }
