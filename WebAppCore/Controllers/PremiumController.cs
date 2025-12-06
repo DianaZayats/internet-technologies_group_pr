@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SlayLib.Data;
+using SlayLib.Models;
 using System;
 using System.Security.Claims;
 using WebAppCore.ViewModels;
@@ -24,8 +25,9 @@ namespace WebAppCore.Controllers
         /// Відображає Premium сторінку з преміум рецептами
         /// </summary>
         [Authorize(Policy = "CanAccessPremium")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int featuredPage = 1)
         {
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             
             // Отримуємо метрики користувача
@@ -41,23 +43,24 @@ namespace WebAppCore.Controllers
             };
 
             ViewData["Metrics"] = metrics;
-
-            // Отримуємо тільки преміум рецепти
-            var recipes = await _context.Recipes
+            int pageSize = 4;
+            var featuredQuery = _context.Recipes
                 .Include(r => r.Author)
                 .Include(r => r.Ingredients)
                 .Include(r => r.Ratings)
                 .Where(r => r.IsPremium && r.IsPublic)
                 .OrderByDescending(r => r.CreatedAt)
-                .ToListAsync();
+                .AsQueryable();
+
+            var featuredRecipes = await PaginateList<Recipe>.CreateAsync(featuredQuery, featuredPage, pageSize);
 
             // Обчислюємо середні рейтинги
-            foreach (var recipe in recipes)
+            foreach (var recipe in featuredRecipes)
             {
                 if (recipe.Ratings != null && recipe.Ratings.Any())
                 {
-                    ViewData[$"Rating_{recipe.Id}"] = recipe.Ratings.Average(r => r.Rating);
-                    ViewData[$"RatingCount_{recipe.Id}"] = recipe.Ratings.Count;
+                    recipe.AverageRating = recipe.Ratings.Average(r => r.Rating);
+                    recipe.RatingCount = recipe.Ratings.Count;
                 }
             }
 
@@ -72,7 +75,7 @@ namespace WebAppCore.Controllers
                 ViewData["FavoriteRecipeIds"] = favoriteRecipeIds;
             }
 
-            return View(recipes);
+            return View(featuredRecipes);
         }
     }
 }
