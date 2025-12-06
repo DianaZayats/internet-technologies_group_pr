@@ -55,7 +55,9 @@ namespace WebAppCore.Controllers
             int? minCalories,
             string? search,
             string? hasIngredients,
-            string? excludeIngredients)
+            string? excludeIngredients,
+            int featuredPage = 1
+            )
         {
             var query = _context.Recipes
                 .Include(r => r.Author)
@@ -63,6 +65,20 @@ namespace WebAppCore.Controllers
                 .Include(r => r.Ratings)
                 .Where(r => r.IsPublic) // Тільки публічні рецепти
                 .AsQueryable();
+
+            int pageSize = 6;
+
+            var featuredRecipes = await PaginateList<Recipe>.CreateAsync(query, featuredPage, pageSize);
+
+            // Обчислюємо середні рейтинги
+            foreach (var recipe in featuredRecipes)
+            {
+                if (recipe.Ratings != null && recipe.Ratings.Any())
+                {
+                    recipe.AverageRating = recipe.Ratings.Average(r => r.Rating);
+                    recipe.RatingCount = recipe.Ratings.Count;
+                }
+            }
 
             // Фільтр за категорією
             if (!string.IsNullOrEmpty(category))
@@ -182,7 +198,7 @@ namespace WebAppCore.Controllers
             ViewBag.HasIngredients = hasIngredients;
             ViewBag.ExcludeIngredients = excludeIngredients;
 
-            return View(recipes);
+            return View(featuredRecipes);
         }
 
         // GET: Recipe/Details/5
